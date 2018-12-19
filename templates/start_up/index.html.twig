@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StartUp index{% endblock %}
+
+{% block body %}
+    <h1>StartUp index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomEntreprise</th>
+                <th>NomDirigeant</th>
+                <th>Adresse</th>
+                <th>FondationDate</th>
+                <th>SiretNumber</th>
+                <th>WorkerNumber</th>
+                <th>Activity</th>
+                <th>IntellectualProperty</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for start_up in start_ups %}
+            <tr>
+                <td>{{ start_up.id }}</td>
+                <td>{{ start_up.nomEntreprise }}</td>
+                <td>{{ start_up.nomDirigeant }}</td>
+                <td>{{ start_up.adresse }}</td>
+                <td>{{ start_up.fondationDate ? start_up.fondationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ start_up.siretNumber }}</td>
+                <td>{{ start_up.workerNumber }}</td>
+                <td>{{ start_up.activity }}</td>
+                <td>{{ start_up.intellectualProperty }}</td>
+                <td>
+                    <a href="{{ path('start_up_show', {'id': start_up.id}) }}">show</a>
+                    <a href="{{ path('start_up_edit', {'id': start_up.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('start_up_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StartUp{% endblock %}
+
+{% block body %}
+    <h1>StartUp</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ start_up.id }}</td>
+            </tr>
+            <tr>
+                <th>NomEntreprise</th>
+                <td>{{ start_up.nomEntreprise }}</td>
+            </tr>
+            <tr>
+                <th>NomDirigeant</th>
+                <td>{{ start_up.nomDirigeant }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ start_up.adresse }}</td>
+            </tr>
+            <tr>
+                <th>FondationDate</th>
+                <td>{{ start_up.fondationDate ? start_up.fondationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>SiretNumber</th>
+                <td>{{ start_up.siretNumber }}</td>
+            </tr>
+            <tr>
+                <th>WorkerNumber</th>
+                <td>{{ start_up.workerNumber }}</td>
+            </tr>
+            <tr>
+                <th>Activity</th>
+                <td>{{ start_up.activity }}</td>
+            </tr>
+            <tr>
+                <th>IntellectualProperty</th>
+                <td>{{ start_up.intellectualProperty }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('start_up_index') }}">back to list</a>
+
+    <a href="{{ path('start_up_edit', {'id': start_up.id}) }}">edit</a>
+
+    {{ include('start_up/_delete_form.html.twig') }}
+{% endblock %}
