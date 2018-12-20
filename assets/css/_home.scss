@@ -11,6 +11,7 @@
   font-family: $font-title;
 }
 
+
 .backgroundHome {
   background: url("../images/grosLabo.jpg");
   background-repeat: no-repeat;
@@ -70,4 +71,8 @@
 .linkName {
   color: white;
   text-shadow: 8px 8px 8px black, 0 0 8em black, 0 0 1em black;
+
+button {
+  background-color: $variableBtn-color;
+
 }
