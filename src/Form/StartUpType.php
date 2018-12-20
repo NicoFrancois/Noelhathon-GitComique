@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\StartUp;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,6 +21,7 @@ class StartUpType extends AbstractType
             ->add('workerNumber')
             ->add('activity')
             ->add('intellectualProperty')
+            ->add('email')
         ;
     }
 
