@@ -73,9 +73,15 @@ class StartUp
      */
     private $service;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Satisfaction", mappedBy="society")
+     */
+    private $satisfactions;
+
     public function __construct()
     {
         $this->service = new ArrayCollection();
+        $this->satisfactions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -229,7 +235,7 @@ class StartUp
         return $this;
     }
 
-    /**
+    /*
      * @param mixed $service
      */
     public function setService($service): void
@@ -237,4 +243,33 @@ class StartUp
         $this->service[] = $service;
     }
 
+//      * @return Collection|Satisfaction[]
+//      */
+//     public function getSatisfactions(): Collection
+//     {
+//         return $this->satisfactions;
+//     }
+
+//     public function addSatisfaction(Satisfaction $satisfaction): self
+//     {
+//         if (!$this->satisfactions->contains($satisfaction)) {
+//             $this->satisfactions[] = $satisfaction;
+//             $satisfaction->setSociety($this);
+//         }
+
+//         return $this;
+//     }
+
+//     public function removeSatisfaction(Satisfaction $satisfaction): self
+//     {
+//         if ($this->satisfactions->contains($satisfaction)) {
+//             $this->satisfactions->removeElement($satisfaction);
+//             // set the owning side to null (unless already changed)
+//             if ($satisfaction->getSociety() === $this) {
+//                 $satisfaction->setSociety(null);
+//             }
+//         }
+
+//         return $this;
+//     }
 }

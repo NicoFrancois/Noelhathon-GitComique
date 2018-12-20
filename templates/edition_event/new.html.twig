@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EditionEvent{% endblock %}
+
+{% block body %}
+    <h1>Create new EditionEvent</h1>
+
+    {{ include('edition_event/_form.html.twig') }}
+
+    <a href="{{ path('edition_event_index') }}">back to list</a>
+{% endblock %}

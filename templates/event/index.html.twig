@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les Evenements{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-between">
+            <h1 class="mb-5">Tous les Evenements</h1>
+        </div>
+        <table class="table mt-5">
+            <thead class="thead bg-primary">
+            <tr class="text-center">
+                <th class="text-white">Nom de l'evenement</th>
+                <th class="text-white">Type d'evenement</th>
+                <th class="text-white">Voir toutes les editions</th>
+                <th class="text-white">Modifier</th>
+                <th class="text-white">Supprimer</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr class="text-center">
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.type }}</td>
+                    <td>
+                        <a href="{{ path('event_show', {'id': event.id}) }}"><i class="fas fa-eye"></i></a>
+                    </td>
+                    <td><a href="{{ path('event_edit', {'id': event.id}) }}"><i class="fas fa-edit"></i></a></td>
+                    <td>{{ include('event/_delete_form.html.twig') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('event_new') }}"><button type="button" class="btn bg-primary text-white">Ajouter un nouvel évènement</button></a>
+    </div>
+{% endblock %}

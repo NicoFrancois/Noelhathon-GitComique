@@ -55,13 +55,13 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-    .copyFiles({
-        from: './assets/images',
         // optional target path, relative to the output dir
-        to: 'images/[path][name].[ext]',
         // only copy files matching this pattern
         // pattern: /\.(png|jpg|jpeg)$/
-    })
+
+    // uncomment if you use API Platform Admin (composer req api-admin)
+    //.enableReactPreset()
+    //.addEntry('admin', './assets/js/admin.js')
 ;
 
 module.exports = Encore.getWebpackConfig();
