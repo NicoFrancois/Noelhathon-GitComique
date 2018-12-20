@@ -4,41 +4,42 @@
 
 {% block body %}
     <div class="container">
-        <h1>Partenaires</h1>
+        <div class="row justify-content-between">
+            <h1 class="mb-5">Partenaires</h1>
+            <a href="{{ path('internal_partner_new') }}"><button type="button" class="btn bg-primary text-white mt-5">Ajouter un partenaire</button></a>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Nombre d'événements</th>
-                <th>Nombre d'apport de partenaires</th>
-                <th>Contact dans l'entreprise</th>
-                <th>Numéro de téléphone</th>
-                <th>Email</th>
-                <th>actions</th>
+        <table class="table mt-5">
+            <thead class="thead bg-primary">
+            <tr class="text-center">
+                <th class="text-white">Nom de l'entreprise</th>
+                <th class="text-white">Nombre d'événements</th>
+                <th class="text-white">Nombre d'apport de partenaires</th>
+                <th class="text-white">Détails</th>
+                <th class="text-white">Editer</th>
+                <th class="text-white">Supprimer</th>
+
             </tr>
-        </thead>
-        <tbody>
-        {% for internal_partner in internal_partners %}
-            <tr>
-                <td>{{ internal_partner.name }}</td>
-                <td>{{ internal_partner.EventCount }}</td>
-                <td>{{ internal_partner.partnerIntake }}</td>
-                <td>{{ internal_partner.contact }}</td>
-                <td>{{ internal_partner.phoneNumber }}</td>
-                <td>{{ internal_partner.email }}</td>
-                <td>
-                    <a href="{{ path('internal_partner_show', {'id': internal_partner.id}) }}">Détails</a>
-                    <a href="{{ path('internal_partner_edit', {'id': internal_partner.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-        <a href="{{ path('internal_partner_new') }}">Ajouter un partenaire</a>
+            </thead>
+            <tbody>
+            {% for internal_partner in internal_partners %}
+                <tr class="text-center">
+                    <td>{{ internal_partner.name }}</td>
+                    <td>{{ internal_partner.EventCount }}</td>
+                    <td>{{ internal_partner.partnerIntake }}</td>
+                    <td>
+                        <a href="{{ path('internal_partner_show', {'id': internal_partner.id}) }}"><i class="fas fa-eye"></i></a></td>
+                    <td>  <a href="{{ path('internal_partner_edit', {'id': internal_partner.id}) }}"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td>{{ include('internal_partner/_delete_form.html.twig') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
     </div>
 {% endblock %}
