@@ -19,14 +19,14 @@ class EditionService
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="edition")
-     */
-    private $service;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Service", inversedBy="editionServices")
+     */
+    private $service;
 
     public function __construct()
     {
@@ -41,33 +41,11 @@ class EditionService
     /**
      * @return Collection|Service[]
      */
-    public function getService(): Collection
+    public function getService(): Service
     {
         return $this->service;
     }
 
-    public function addService(Service $service): self
-    {
-        if (!$this->service->contains($service)) {
-            $this->service[] = $service;
-            $service->setEdition($this);
-        }
-
-        return $this;
-    }
-
-    public function removeService(Service $service): self
-    {
-        if ($this->service->contains($service)) {
-            $this->service->removeElement($service);
-            // set the owning side to null (unless already changed)
-            if ($service->getEdition() === $this) {
-                $service->setEdition(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getDate(): ?\DateTimeInterface
     {
@@ -77,6 +55,13 @@ class EditionService
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function setService(?Service $service): self
+    {
+        $this->service = $service;
 
         return $this;
     }

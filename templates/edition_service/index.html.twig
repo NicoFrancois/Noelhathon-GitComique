@@ -1,33 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}EditionService index{% endblock %}
+{% block title %}Toutes les editions{% endblock %}
 
 {% block body %}
-    <h1>EditionService index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>actions</th>
+    <div class="container">
+        <div class="row justify-content-between">
+            <h1 class="mb-5 mt-5 text-center">Toutes les editions du service</h1>
+        </div>
+        <table class="table mt-5">
+            <thead class="thead bg-primary">
+            <tr class="text-center">
+                <th class="text-white">Date</th>
+                <th class="text-white">Nombre de participant</th>
+                <th class="text-white">Voir cette edition</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for edition_service in edition_services %}
-            <tr>
-                <td>{{ edition_service.id }}</td>
-                <td>
-                    <a href="{{ path('edition_service_show', {'id': edition_service.id}) }}">show</a>
-                    <a href="{{ path('edition_service_edit', {'id': edition_service.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="2">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('edition_service_new') }}">Create new</a>
+            </thead>
+            <tbody>
+            {% for edition in edition_services %}
+                <tr class="text-center">
+                    <td>{{ edition.date|date('d/m/Y') }}</td>
+                    <td></td>
+                    <td>
+                        <a href="{{ path('edition_service_show', {'id': edition.id}) }}"><i class="fas fa-eye"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

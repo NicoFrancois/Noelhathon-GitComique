@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,11 +28,16 @@ class Service
      */
     private $type;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\EditionService", inversedBy="service")
+     * @ORM\OneToMany(targetEntity="App\Entity\EditionService", mappedBy="service")
      */
-    private $edition;
+    private $editionServices;
+
+    public function __construct()
+    {
+        $this->editionServices = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -61,16 +68,36 @@ class Service
         return $this;
     }
 
-
-    public function getEdition(): ?EditionService
+    /**
+     * @return Collection|EditionService[]
+     */
+    public function getEditionServices(): Collection
     {
-        return $this->edition;
+        return $this->editionServices;
     }
 
-    public function setEdition(?EditionService $edition): self
+    public function addEditionService(EditionService $editionService): self
     {
-        $this->edition = $edition;
+        if (!$this->editionServices->contains($editionService)) {
+            $this->editionServices[] = $editionService;
+            $editionService->setService($this);
+        }
 
         return $this;
     }
+
+    public function removeEditionService(EditionService $editionService): self
+    {
+        if ($this->editionServices->contains($editionService)) {
+            $this->editionServices->removeElement($editionService);
+            // set the owning side to null (unless already changed)
+            if ($editionService->getService() === $this) {
+                $editionService->setService(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }
