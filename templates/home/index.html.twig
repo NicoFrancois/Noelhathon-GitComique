@@ -4,10 +4,28 @@
 
 {% block body %}
     <main class="container-fluid backgroundHome">
-        <div class="d-flex align-items-center flex-column pt-5">
-            <div class="mt-5">
-                <h1>Accueil</h1>
+        <div class="d-flex align-items-center flex-column pt-2 ml-3">
+            <div class="titreP d-flex align-items-center mx-auto mt-5">
+                <h1>Suivi des Actions COP</h1>
             </div>
-        </div>
+            <div class="container-fluid lien">
+                <a href="{{ path('service_index') }}"> <i class="fas fa-handshake" id="services"></i></a>
+                <span class="petitcarre orange petit mr-3 justify-content-center"> </span>
+                </br></br></br>
+                <div class="linkName"><h2>Services</h2></div>
+            </div>
+            <div class="container-fluid lien2">
+                <a href="{{ path('home') }}"> <i class="fas fa-glass-cheers" id="services"></i></a>
+                <span class="petitcarre orange petit mr-3 justify-content-center"> </span>
+                </br></br></br>
+                <div class="linkName"><h2>Evenements</h2></div>
+            </div
+            ><div class="container-fluid lien3">
+                <a href="{{ path('start_up_index') }}"> <i class="fas fa-brain" id="services"></i></a>
+                <span class="petitcarre orange petit mr-3 justify-content-center"> </span>
+                </br></br></br>
+                    <div class="linkName"><h2>Star'Up</h2></div>
+            </div>
+            </div></div>
     </main>
 {% endblock %}
