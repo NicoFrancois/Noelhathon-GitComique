@@ -6,12 +6,22 @@
   width: 160px;
 }
 
-.nav-tabs {
+.navbar {
   background-color: $primary;
   font-family: $font-title;
 }
 
+.fullSite{
+  font-size: 2em;
+  letter-spacing: 2px;
+    .a{
+      letter-spacing: 5px;
+    }
+}
 
+#navbarColor01{
+  margin-left: 50%;
+}
 .backgroundHome {
   background: url("../images/grosLabo.jpg");
   background-repeat: no-repeat;
