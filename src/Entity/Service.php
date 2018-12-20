@@ -26,20 +26,6 @@ class Service
      */
     private $type;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $participant;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $location;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\EditionService", inversedBy="service")
@@ -75,41 +61,6 @@ class Service
         return $this;
     }
 
-    public function getParticipant(): ?string
-    {
-        return $this->participant;
-    }
-
-    public function setParticipant(?string $participant): self
-    {
-        $this->participant = $participant;
-
-        return $this;
-    }
-
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(string $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
 
     public function getEdition(): ?EditionService
     {

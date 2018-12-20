@@ -11,7 +11,9 @@ class EditionServiceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $currentDate = new \DateTime();
         $builder
+        ->add('date')
         ;
     }
 

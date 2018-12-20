@@ -23,6 +23,11 @@ class EditionService
      */
     private $service;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
     public function __construct()
     {
         $this->service = new ArrayCollection();
@@ -60,6 +65,18 @@ class EditionService
                 $service->setEdition(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
