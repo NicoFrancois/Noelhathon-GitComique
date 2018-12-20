@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,10 +28,6 @@ class Service
      */
     private $type;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $participant;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -37,9 +35,19 @@ class Service
     private $location;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToOne(targetEntity="App\Entity\EditionService", inversedBy="service")
      */
-    private $date;
+    private $edition;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\EditionService", mappedBy="service")
+     */
+    private $editionServices;
+
+    public function __construct()
+    {
+        $this->editionServices = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,17 +78,6 @@ class Service
         return $this;
     }
 
-    public function getParticipant(): ?string
-    {
-        return $this->participant;
-    }
-
-    public function setParticipant(?string $participant): self
-    {
-        $this->participant = $participant;
-
-        return $this;
-    }
 
     public function getLocation(): ?string
     {
@@ -94,14 +91,46 @@ class Service
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+
+    public function getEdition(): ?EditionService
     {
-        return $this->date;
+        return $this->edition;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setEdition(?EditionService $edition): self
     {
-        $this->date = $date;
+        $this->edition = $edition;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EditionService[]
+     */
+    public function getEditionServices(): Collection
+    {
+        return $this->editionServices;
+    }
+
+    public function addEditionService(EditionService $editionService): self
+    {
+        if (!$this->editionServices->contains($editionService)) {
+            $this->editionServices[] = $editionService;
+            $editionService->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEditionService(EditionService $editionService): self
+    {
+        if ($this->editionServices->contains($editionService)) {
+            $this->editionServices->removeElement($editionService);
+            // set the owning side to null (unless already changed)
+            if ($editionService->getService() === $this) {
+                $editionService->setService(null);
+            }
+        }
 
         return $this;
     }

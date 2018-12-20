@@ -20,7 +20,11 @@ class StartUpController extends AbstractController
      */
     public function index(StartUpRepository $startUpRepository): Response
     {
-        return $this->render('start_up/index.html.twig', ['start_ups' => $startUpRepository->findAll()]);
+        return $this->render('start_up/index.html.twig', array('start_ups'
+        => $startUpRepository->findBy(
+                [],
+                ['nomEntreprise' => 'ASC'])
+        ));
     }
 
     /**

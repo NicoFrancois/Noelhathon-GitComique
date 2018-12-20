@@ -16,7 +16,6 @@ class ServiceType extends AbstractType
             ->add('type')
             ->add('participant')
             ->add('location')
-            ->add('date')
         ;
     }
 
