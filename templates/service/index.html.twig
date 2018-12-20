@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Tous les services{% endblock %}
 
@@ -6,7 +6,7 @@
     <div class="container">
     <div class="row justify-content-between">
     <h1 class="mb-5">Tous les services</h1>
-        <a href="{{ path('service_new') }}"><button type="button" class="btn variableBtn-color text-white">Ajouter un nouveau service</button></a>
+        <a href="{{ path('service_new') }}"><button type="button" class="btn bg-primary text-white">Ajouter un nouveau service</button></a>
     </div>
         <table class="table mt-5">
             <thead class="thead bg-primary">
