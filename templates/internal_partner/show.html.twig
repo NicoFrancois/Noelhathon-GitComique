@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partenaire interne{% endblock %}
+
+{% block body %}
+    <h1>Partenaire interne</h1>
+
+    <table class="table">
+        <tbody>
+
+        <tr>
+                <th>Nom</th>
+                <td>{{ internal_partner.name }}</td>
+            </tr>
+            <tr>
+                <th>Nombre d'évènements</th>
+                <td>{{ internal_partner.EventCount }}</td>
+            </tr>
+            <tr>
+                <th>Nombres d'apport de partenaires</th>
+                <td>{{ internal_partner.partnerIntake }}</td>
+            </tr>
+            <tr>
+                <th>Contact dans l'entreprise</th>
+                <td>{{ internal_partner.contact }}</td>
+            </tr>
+            <tr>
+                <th>Numéro de téléphone</th>
+                <td>{{ internal_partner.phoneNumber }}</td>
+            </tr> <tr>
+                <th>Adresse email</th>
+                <td>{{ internal_partner.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('internal_partner_index') }}">Retourner à la liste</a>
+
+    <a href="{{ path('internal_partner_edit', {'id': internal_partner.id}) }}">Modifier</a>
+
+    {{ include('internal_partner/_delete_form.html.twig') }}
+{% endblock %}

@@ -2,27 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\Service;
+use App\Entity\Participant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ServiceType extends AbstractType
+class ParticipantType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('type')
-            ->add('participant')
-            ->add('location')
+            ->add('name')
+            ->add('lastname')
+            ->add('company')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Service::class,
+            'data_class' => Participant::class,
         ]);
     }
 }

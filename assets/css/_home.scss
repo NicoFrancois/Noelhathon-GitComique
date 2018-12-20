@@ -5,13 +5,23 @@
 .logoLabo {
   width: 160px;
 }
-
-.nav-tabs {
+.navbar {
+>>>>>>> aae3f604ad236c5eb1bfa385508cc43f54ccee4c
   background-color: $primary;
   font-family: $font-title;
 }
 
+.fullSite{
+  font-size: 2em;
+  letter-spacing: 2px;
+    .a{
+      letter-spacing: 5px;
+    }
+}
 
+#navbarColor01{
+  margin-left: 50%;
+}
 .backgroundHome {
   background: url("../images/grosLabo.jpg");
   background-repeat: no-repeat;
@@ -74,5 +84,5 @@
 }
 button {
   background-color: $variableBtn-color;
-
 }
+
