@@ -28,31 +28,16 @@ class Service
      */
     private $type;
 
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $location;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\EditionService", inversedBy="service")
-     */
-    private $edition;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\EditionService", mappedBy="service")
      */
     private $editionServices;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\StartUp", mappedBy="service")
-     */
-    private $startUps;
-
     public function __construct()
     {
-        $this->startUps = new ArrayCollection();
+        $this->editionServices = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -79,32 +64,6 @@ class Service
     public function setType(string $type): self
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(string $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-
-    public function getEdition(): ?EditionService
-    {
-        return $this->edition;
-    }
-
-    public function setEdition(?EditionService $edition): self
-    {
-        $this->edition = $edition;
 
         return $this;
     }
@@ -140,32 +99,5 @@ class Service
         return $this;
     }
 
-    /**
-     * @return Collection|StartUp[]
-     */
-    public function getStartUps(): Collection
-    {
-        return $this->startUps;
-    }
 
-    public function addStartUp(StartUp $startUp): self
-    {
-        if (!$this->startUps->contains($startUp)) {
-            $this->startUps[] = $startUp;
-            $startUp->addService($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStartUp(StartUp $startUp): self
-    {
-        if ($this->startUps->contains($startUp)) {
-            $this->startUps->removeElement($startUp);
-            $startUp->removeService($this);
-        }
-
-        return $this;
-    }
 }
-
