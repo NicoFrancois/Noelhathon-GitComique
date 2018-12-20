@@ -3,38 +3,43 @@
 {% block title %}StartUp index{% endblock %}
 
 {% block body %}
-    <h1>StartUp index</h1>
+    <h1>Liste des start-up</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>NomEntreprise</th>
-                <th>NomDirigeant</th>
+                {#<th>Id</th>#}
+                <th>Nom de l'entreprise</th>
+                <th>Nom du dirigeant</th>
                 <th>Adresse</th>
-                <th>FondationDate</th>
-                <th>SiretNumber</th>
-                <th>WorkerNumber</th>
-                <th>Activity</th>
-                <th>IntellectualProperty</th>
+                <th>Numéro de téléphone</th>
+                <th>Email</th>
+                <th>Date de création</th>
+                <th>Numéro siret</th>
+                <th>Effectif</th>
+                <th>Activité</th>
+                <th>Propriété intellectuelle</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for start_up in start_ups %}
             <tr>
-                <td>{{ start_up.id }}</td>
+                {#<td>{{ start_up.id }}</td>#}
                 <td>{{ start_up.nomEntreprise }}</td>
                 <td>{{ start_up.nomDirigeant }}</td>
                 <td>{{ start_up.adresse }}</td>
+                <td>{{ start_up.phoneNumber }}</td>
+                <td>{{ start_up.email }}</td>
                 <td>{{ start_up.fondationDate ? start_up.fondationDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ start_up.siretNumber }}</td>
                 <td>{{ start_up.workerNumber }}</td>
                 <td>{{ start_up.activity }}</td>
                 <td>{{ start_up.intellectualProperty }}</td>
+
                 <td>
-                    <a href="{{ path('start_up_show', {'id': start_up.id}) }}">show</a>
-                    <a href="{{ path('start_up_edit', {'id': start_up.id}) }}">edit</a>
+                    <a href="{{ path('start_up_show', {'id': start_up.id}) }}">Détail</a>
+                    <a href="{{ path('start_up_edit', {'id': start_up.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -45,5 +50,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('start_up_new') }}">Create new</a>
+    <a href="{{ path('start_up_new') }}">Créer une nouvelle star-up</a>
 {% endblock %}

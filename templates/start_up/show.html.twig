@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}StartUp{% endblock %}
+{% block title %}Start Up{% endblock %}
 
 {% block body %}
-    <h1>StartUp</h1>
+    <h1>{{ start_up.nomEntreprise }}</h1>
 
     <table class="table">
         <tbody>
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<td>{{ start_up.id }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>NomEntreprise</th>#}
+                {#<td>{{ start_up.nomEntreprise }}</td>#}
+            {#</tr>#}
             <tr>
-                <th>Id</th>
-                <td>{{ start_up.id }}</td>
-            </tr>
-            <tr>
-                <th>NomEntreprise</th>
-                <td>{{ start_up.nomEntreprise }}</td>
-            </tr>
-            <tr>
-                <th>NomDirigeant</th>
+                <th>Nom du dirigeant</th>
                 <td>{{ start_up.nomDirigeant }}</td>
             </tr>
             <tr>
@@ -24,31 +24,35 @@
                 <td>{{ start_up.adresse }}</td>
             </tr>
             <tr>
-                <th>FondationDate</th>
+                <th>Date de création</th>
                 <td>{{ start_up.fondationDate ? start_up.fondationDate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>SiretNumber</th>
+                <th>Numéro de SIRET</th>
                 <td>{{ start_up.siretNumber }}</td>
             </tr>
             <tr>
-                <th>WorkerNumber</th>
+                <th>Effectif</th>
                 <td>{{ start_up.workerNumber }}</td>
             </tr>
             <tr>
-                <th>Activity</th>
+                <th>Activité</th>
                 <td>{{ start_up.activity }}</td>
             </tr>
             <tr>
-                <th>IntellectualProperty</th>
+                <th>Propriété intellectuelle</th>
                 <td>{{ start_up.intellectualProperty }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ start_up.email }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('start_up_index') }}">back to list</a>
+    <a href="{{ path('start_up_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('start_up_edit', {'id': start_up.id}) }}">edit</a>
+    <a href="{{ path('start_up_edit', {'id': start_up.id}) }}">Modifier</a>
 
     {{ include('start_up/_delete_form.html.twig') }}
 {% endblock %}
