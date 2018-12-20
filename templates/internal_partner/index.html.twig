@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InternalPartner index{% endblock %}
+
+{% block body %}
+    <h1>InternalPartner index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>EventCount</th>
+                <th>PartnerIntake</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for internal_partner in internal_partners %}
+            <tr>
+                <td>{{ internal_partner.id }}</td>
+                <td>{{ internal_partner.name }}</td>
+                <td>{{ internal_partner.EventCount }}</td>
+                <td>{{ internal_partner.partnerIntake }}</td>
+                <td>
+                    <a href="{{ path('internal_partner_show', {'id': internal_partner.id}) }}">show</a>
+                    <a href="{{ path('internal_partner_edit', {'id': internal_partner.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('internal_partner_new') }}">Create new</a>
+{% endblock %}

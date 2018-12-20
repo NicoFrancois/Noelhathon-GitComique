@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit InternalPartner{% endblock %}
+
+{% block body %}
+    <h1>Edit InternalPartner</h1>
+
+    {{ include('internal_partner/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('internal_partner_index') }}">back to list</a>
+
+    {{ include('internal_partner/_delete_form.html.twig') }}
+{% endblock %}
