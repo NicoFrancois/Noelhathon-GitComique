@@ -28,31 +28,16 @@ class Service
      */
     private $type;
 
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $location;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\EditionService", inversedBy="service")
-     */
-    private $edition;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\EditionService", mappedBy="service")
      */
     private $editionServices;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="service")
-     */
-    private $startUp;
-
     public function __construct()
     {
         $this->editionServices = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -79,32 +64,6 @@ class Service
     public function setType(string $type): self
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(string $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-
-    public function getEdition(): ?EditionService
-    {
-        return $this->edition;
-    }
-
-    public function setEdition(?EditionService $edition): self
-    {
-        $this->edition = $edition;
 
         return $this;
     }
@@ -140,15 +99,5 @@ class Service
         return $this;
     }
 
-    public function getStartUp(): ?StartUp
-    {
-        return $this->startUp;
-    }
 
-    public function setStartUp(?StartUp $startUp): self
-    {
-        $this->startUp = $startUp;
-
-        return $this;
-    }
 }
