@@ -45,13 +45,13 @@ class Service
     private $editionServices;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="service")
+     * @ORM\ManyToMany(targetEntity="App\Entity\StartUp", mappedBy="service")
      */
-    private $startUp;
+    private $startUps;
 
     public function __construct()
     {
-        $this->editionServices = new ArrayCollection();
+        $this->startUps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -140,15 +140,32 @@ class Service
         return $this;
     }
 
-    public function getStartUp(): ?StartUp
+    /**
+     * @return Collection|StartUp[]
+     */
+    public function getStartUps(): Collection
     {
-        return $this->startUp;
+        return $this->startUps;
     }
 
-    public function setStartUp(?StartUp $startUp): self
+    public function addStartUp(StartUp $startUp): self
     {
-        $this->startUp = $startUp;
+        if (!$this->startUps->contains($startUp)) {
+            $this->startUps[] = $startUp;
+            $startUp->addService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStartUp(StartUp $startUp): self
+    {
+        if ($this->startUps->contains($startUp)) {
+            $this->startUps->removeElement($startUp);
+            $startUp->removeService($this);
+        }
 
         return $this;
     }
 }
+

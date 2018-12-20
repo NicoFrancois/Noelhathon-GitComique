@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\StartUp;
+use App\Entity\Service;
 use App\Form\StartUpType;
+use App\Repository\ServiceRepository;
 use App\Repository\StartUpRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,9 +32,10 @@ class StartUpController extends AbstractController
     /**
      * @Route("/new", name="start_up_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ServiceRepository $serviceRepository): Response
     {
         $startUp = new StartUp();
+        $services = $serviceRepository->findAll();
         $form = $this->createForm(StartUpType::class, $startUp);
         $form->handleRequest($request);
 
@@ -55,7 +58,10 @@ class StartUpController extends AbstractController
      */
     public function show(StartUp $startUp): Response
     {
-        return $this->render('start_up/show.html.twig', ['start_up' => $startUp]);
+        return $this->render('start_up/show.html.twig', [
+            'start_up' => $startUp,
+            'service' => $startUp->getService()->toArray()
+        ]);
     }
 
     /**

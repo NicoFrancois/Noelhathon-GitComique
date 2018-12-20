@@ -69,7 +69,7 @@ class StartUp
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="startUp")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="startUps")
      */
     private $service;
 
@@ -211,26 +211,30 @@ class StartUp
         return $this->service;
     }
 
-    public function addService(Service $service): self
+    public function addServouse(Service $service): self
     {
         if (!$this->service->contains($service)) {
             $this->service[] = $service;
-            $service->setStartUp($this);
         }
 
         return $this;
     }
 
-    public function removeService(Service $service): self
+    public function removeServouse(Service $service): self
     {
         if ($this->service->contains($service)) {
             $this->service->removeElement($service);
-            // set the owning side to null (unless already changed)
-            if ($service->getStartUp() === $this) {
-                $service->setStartUp(null);
-            }
         }
 
         return $this;
     }
+
+    /**
+     * @param mixed $service
+     */
+    public function setService($service): void
+    {
+        $this->service[] = $service;
+    }
+
 }
