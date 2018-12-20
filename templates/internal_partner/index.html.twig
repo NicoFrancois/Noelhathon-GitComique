@@ -13,8 +13,6 @@
             <thead class="thead bg-primary">
             <tr class="text-center">
                 <th class="text-white">Nom de l'entreprise</th>
-                <th class="text-white">Nombre d'événements</th>
-                <th class="text-white">Nombre d'apport de partenaires</th>
                 <th class="text-white">Détails</th>
                 <th class="text-white">Editer</th>
                 <th class="text-white">Supprimer</th>
@@ -25,8 +23,6 @@
             {% for internal_partner in internal_partners %}
                 <tr class="text-center">
                     <td>{{ internal_partner.name }}</td>
-                    <td>{{ internal_partner.EventCount }}</td>
-                    <td>{{ internal_partner.partnerIntake }}</td>
                     <td>
                         <a href="{{ path('internal_partner_show', {'id': internal_partner.id}) }}"><i class="fas fa-eye"></i></a></td>
                     <td>  <a href="{{ path('internal_partner_edit', {'id': internal_partner.id}) }}"><i class="fas fa-edit"></i></a>
