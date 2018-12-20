@@ -8,15 +8,17 @@
         <img class="img-fluid img-questionary" src="{{ asset('build/images/giletjauneh.jpg') }}">
         <div class="container mb-4">
             <div class="row justify-content-center">
-                <h1 class="pl-2">Questionnaire de satisfaction sur : </h1>
+                <h2 class="pl-2">Questionnaire de satisfaction sur : </h2>
             </div>
             <hr>
             <p>Le LAB'O vous remercie de votre participation à l'événement ### du ###. Pour vous proposer des événements de qualité nous souhaitons avoir votre ressenti sur ceux-ci.
                 Nous vous remercions pour vos réponses. </p>
             <p class="mt-4">L'équipe LAB'O</p>
             <hr>
+            {{ form_start(form) }}
             <h4 class="mt-5">Avez-vous appréciez cet événement ?</h4>
-
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}
