@@ -27,9 +27,11 @@ class StartUpFixtures extends Fixture
                     ->setSiretNumber($faker->numberBetween($min = 1000000, $max = 9000000))
                     ->setWorkerNumber($faker->numberBetween($min = 1, $max = 10))
                     ->setActivity($faker->word())
+
                     ->setIntellectualProperty($faker->sentence(mt_rand(1,2)))
                     ->setEmail($faker->email)
                     ->setPhoneNumber($faker->phoneNumber);
+
 
     ;
     $manager->persist($startUp);
