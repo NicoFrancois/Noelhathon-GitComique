@@ -14,7 +14,6 @@ class ServiceType extends AbstractType
         $builder
             ->add('title')
             ->add('type')
-            ->add('participant')
             ->add('location')
         ;
     }

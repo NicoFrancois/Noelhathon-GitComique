@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -65,6 +67,16 @@ class StartUp
      * @ORM\Column(type="string", length=255)
      */
     private $phoneNumber;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="startUp")
+     */
+    private $service;
+
+    public function __construct()
+    {
+        $this->service = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -187,6 +199,37 @@ class StartUp
     public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Service[]
+     */
+    public function getService(): Collection
+    {
+        return $this->service;
+    }
+
+    public function addService(Service $service): self
+    {
+        if (!$this->service->contains($service)) {
+            $this->service[] = $service;
+            $service->setStartUp($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Service $service): self
+    {
+        if ($this->service->contains($service)) {
+            $this->service->removeElement($service);
+            // set the owning side to null (unless already changed)
+            if ($service->getStartUp() === $this) {
+                $service->setStartUp(null);
+            }
+        }
 
         return $this;
     }
