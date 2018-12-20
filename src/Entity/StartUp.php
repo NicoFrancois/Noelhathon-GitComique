@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -65,6 +67,22 @@ class StartUp
      * @ORM\Column(type="string", length=255)
      */
     private $phoneNumber;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="startUps")
+     */
+    private $service;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Satisfaction", mappedBy="society")
+     */
+    private $satisfactions;
+
+    public function __construct()
+    {
+        $this->service = new ArrayCollection();
+        $this->satisfactions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -190,4 +208,68 @@ class StartUp
 
         return $this;
     }
+
+    /**
+     * @return Collection|Service[]
+     */
+    public function getService(): Collection
+    {
+        return $this->service;
+    }
+
+    public function addServouse(Service $service): self
+    {
+        if (!$this->service->contains($service)) {
+            $this->service[] = $service;
+        }
+
+        return $this;
+    }
+
+    public function removeServouse(Service $service): self
+    {
+        if ($this->service->contains($service)) {
+            $this->service->removeElement($service);
+        }
+
+        return $this;
+    }
+
+    /*
+     * @param mixed $service
+     */
+    public function setService($service): void
+    {
+        $this->service[] = $service;
+    }
+
+//      * @return Collection|Satisfaction[]
+//      */
+//     public function getSatisfactions(): Collection
+//     {
+//         return $this->satisfactions;
+//     }
+
+//     public function addSatisfaction(Satisfaction $satisfaction): self
+//     {
+//         if (!$this->satisfactions->contains($satisfaction)) {
+//             $this->satisfactions[] = $satisfaction;
+//             $satisfaction->setSociety($this);
+//         }
+
+//         return $this;
+//     }
+
+//     public function removeSatisfaction(Satisfaction $satisfaction): self
+//     {
+//         if ($this->satisfactions->contains($satisfaction)) {
+//             $this->satisfactions->removeElement($satisfaction);
+//             // set the owning side to null (unless already changed)
+//             if ($satisfaction->getSociety() === $this) {
+//                 $satisfaction->setSociety(null);
+//             }
+//         }
+
+//         return $this;
+//     }
 }
