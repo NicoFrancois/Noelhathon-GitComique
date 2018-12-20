@@ -15,6 +15,9 @@ class InternalPartnerType extends AbstractType
             ->add('name')
             ->add('EventCount')
             ->add('partnerIntake')
+            ->add('contact')
+            ->add('phoneNumber')
+            ->add('email')
         ;
     }
 
