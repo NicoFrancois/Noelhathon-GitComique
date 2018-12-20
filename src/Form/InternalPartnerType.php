@@ -13,8 +13,6 @@ class InternalPartnerType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('EventCount')
-            ->add('partnerIntake')
             ->add('contact')
             ->add('phoneNumber')
             ->add('email')
