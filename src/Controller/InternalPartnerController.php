@@ -20,7 +20,11 @@ class InternalPartnerController extends AbstractController
      */
     public function index(InternalPartnerRepository $internalPartnerRepository): Response
     {
-        return $this->render('internal_partner/index.html.twig', ['internal_partners' => $internalPartnerRepository->findBy(['name' =>'*'],['name' => 'ASC'])]);
+        return $this->render('internal_partner/index.html.twig', array('internal_partners'
+        => $internalPartnerRepository->findBy(
+            [],
+                ['name' =>'ASC'])
+            ));
     }
 
     /**
