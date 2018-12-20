@@ -6,8 +6,13 @@
   width: 50px;
 }
 
+.navbar {
+  background-color: $primary;
+}
+
 .nav-tabs {
   background-color: $light-color;
+
   font-family: $font-title;
 }
 button {
@@ -91,5 +96,4 @@ button {
 }
 button {
   background-color: $variableBtn-color;
-
 }
