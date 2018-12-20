@@ -3,43 +3,73 @@
 namespace App\Controller;
 
 use App\Entity\Satisfaction;
-use App\Form\SatisfactionType;
+use App\Form\SatisfactionType1;
+use App\Form\SatisfactionType2Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SwiftController extends AbstractController
 {
     /**
-     * @Route("/swift", name="swift")
+     * @Route("/questionary1", name="questionary1", methods={"GET","POST"})
      */
-    public function index(Request $request,\Swift_Mailer $swift_Mailer): Response
+    public function formulaire1(Request $request, Session $session): Response
     {
-        /*$message = (new \Swift_Message('Hello Email'))
-            ->setFrom('cop.labo@gmail.com')
-            ->setTo('tom.guibard@outlook.fr')
-            ->setBody($this->renderView( 'emailQuestion/satisfaction.html.twig'), 'text/html');*/
-
-
-        // $swift_Mailer->send($message);
-
-
         $startUp = new Satisfaction();
-        $form = $this->createForm(SatisfactionType::class, $startUp);
+        $form = $this->createForm(SatisfactionType1::class, $startUp);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($startUp);
-            $entityManager->flush();
+            $session->set('form-data', $form->getData());
 
-            return $this->redirectToRoute('start_up_index');
+            return $this->redirectToRoute('questionary2');
         }
 
         return $this->render('emailQuestion/satisfaction.html.twig', [
             'controller_name' => 'SwiftController',
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/questionary2", name="questionary2", methods={"GET","POST"})
+     */
+    public function formulaire2(Request $request, Session $session): Response
+    {
+        $startUp = new Satisfaction();
+        $form = $this->createForm(SatisfactionType2Type::class, $startUp);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $data = $session->get('form-data');
+            $startUp->setSatisfactionRatio($data->getSatisfactionRatio());
+            $startUp->setAmelioration($data->getAmelioration());
+            $startUp->setEventElarge($data->getEventElarge());
+            $startUp->setContact($data->getContact());
+            $startUp->setExistance($data->getExistance());
+            $startUp->setComment($data->getComment());
+            $entityManager->persist($startUp);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('cimer');
+        }
+
+        return $this->render('emailQuestion/satisfaction2.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/merci", name="cimer")
+     */
+    public function merci(): Response
+    {
+        return $this->render('emailQuestion/satisfaction.html.twig', [
+            'controller_name' => 'SwiftController',
         ]);
     }
 }
