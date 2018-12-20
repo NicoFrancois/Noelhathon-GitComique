@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EditionService index{% endblock %}
+
+{% block body %}
+    <h1>EditionService index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for edition_service in edition_services %}
+            <tr>
+                <td>{{ edition_service.id }}</td>
+                <td>
+                    <a href="{{ path('edition_service_show', {'id': edition_service.id}) }}">show</a>
+                    <a href="{{ path('edition_service_edit', {'id': edition_service.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('edition_service_new') }}">Create new</a>
+{% endblock %}

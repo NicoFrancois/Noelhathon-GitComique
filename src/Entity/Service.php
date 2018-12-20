@@ -41,6 +41,11 @@ class Service
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EditionService", inversedBy="service")
+     */
+    private $edition;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +107,18 @@ class Service
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getEdition(): ?EditionService
+    {
+        return $this->edition;
+    }
+
+    public function setEdition(?EditionService $edition): self
+    {
+        $this->edition = $edition;
 
         return $this;
     }
