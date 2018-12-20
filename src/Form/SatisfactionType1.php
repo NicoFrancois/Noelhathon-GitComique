@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SatisfactionType extends AbstractType
+class SatisfactionType1 extends AbstractType
 {
     const SATISFACTION = [
         'Très satisfait' => 'Très satisfait',
