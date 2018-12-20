@@ -2,26 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Service;
+use App\Entity\EditionEvent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ServiceType extends AbstractType
+class EditionEventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('type')
-            ->add('location')
+            ->add('date')
+            ->add('event')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Service::class,
+            'data_class' => EditionEvent::class,
         ]);
     }
 }
