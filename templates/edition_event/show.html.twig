@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EditionEvent{% endblock %}
+
+{% block body %}
+    <h1>EditionEvent</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ edition_event.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ edition_event.date ? edition_event.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('edition_event_index') }}">back to list</a>
+
+    <a href="{{ path('edition_event_edit', {'id': edition_event.id}) }}">edit</a>
+
+    {{ include('edition_event/_delete_form.html.twig') }}
+{% endblock %}

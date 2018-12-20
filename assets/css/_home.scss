@@ -3,85 +3,18 @@
   padding-right: 20%;
 }
 .logoLabo {
-  width: 160px;
+  width: 50px;
 }
+
 .navbar {
   background-color: $primary;
+}
+
+.nav-tabs {
+  background-color: $light-color;
+
   font-family: $font-title;
-}
-
-.fullSite{
-  font-size: 2em;
-  letter-spacing: 2px;
-    .a{
-      letter-spacing: 5px;
-    }
-}
-
-#navbarColor01{
-  margin-left: 50%;
-}
-.backgroundHome {
-  background: url("../images/grosLabo.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: fixed;
-}
-
-#btnAdmin {
-  color: black;
-  font-size: 4em;
-}
-
-.nav-link{
-  color: black;
-  font-size: 1em;
-}
-#services{
-  color: black;
-  font-size: 7em;
-}
-
-.petitcarre {
-  width: 200px;
-  height: 200px;
-  margin-top: -44px;
-  border: solid $primary 5px;
-  border-radius: 100%;
-  display: inline-block;
-  box-shadow: 40px/#ffbf9a;
-  vertical-align: middle;
-  background-color: white;
-  margin-left: -9%;
-  position: absolute;
-  z-index: -1
-}
-
-.lien{
-  padding-top: 0%;
-  padding-left: 8%;
-}
-
-.lien3{
-  padding-top: 2%;
-  padding-left: 8%;
-}
-.lien2{
-  padding-top:2%;
-  padding-left: 8%;
-}
-
-.titreP{
-  color: white;
-  text-shadow: 8px 8px 8px black, 0 0 8em black, 0 0 1em black;
-}
-
-.linkName {
-  color: white;
-  text-shadow: 8px 8px 8px black, 0 0 8em black, 0 0 1em black;
 }
 button {
   background-color: $variableBtn-color;
 }
-
