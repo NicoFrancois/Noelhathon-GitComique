@@ -44,6 +44,11 @@ class Service
      */
     private $editionServices;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="service")
+     */
+    private $startUp;
+
     public function __construct()
     {
         $this->editionServices = new ArrayCollection();
@@ -131,6 +136,18 @@ class Service
                 $editionService->setService(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStartUp(): ?StartUp
+    {
+        return $this->startUp;
+    }
+
+    public function setStartUp(?StartUp $startUp): self
+    {
+        $this->startUp = $startUp;
 
         return $this;
     }
