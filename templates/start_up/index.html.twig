@@ -1,41 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}StartUp index{% endblock %}
+{% block title %}Liste Start-Up{% endblock %}
 
 {% block body %}
-    <h1>StartUp index</h1>
+<div class="container">
+    <div class="row justify-content-between">
+        <h1 class="mb-5">Liste des start Up</h1>
+        <a href="{{ path('service_new') }}"><button type="button" class="btn bg-primary mt-5 text-white">Ajouter une nuvelle start-Up</button></a>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NomEntreprise</th>
-                <th>NomDirigeant</th>
-                <th>Adresse</th>
-                <th>FondationDate</th>
-                <th>SiretNumber</th>
-                <th>WorkerNumber</th>
-                <th>Activity</th>
-                <th>IntellectualProperty</th>
-                <th>actions</th>
+    <table class="table mt-5">
+        <thead class="thead bg-primary">
+        <tr class="text-center">
+                <th class="text-white">Nom de l'entreprise</th>
+                {#<th class="text-white">Nom du dirigeant</th>#}
+                {#<th class="text-white">Adresse</th>#}
+                <th class="text-white">Numéro de téléphone</th>
+                <th class="text-white">Email</th>
+                {#<th class="text-white">Date de création</th>#}
+                {#<th class="text-white">Numéro siret</th>#}
+                {#<th class="text-white">Effectif</th>#}
+                {#<th class="text-white">Activité</th>#}
+                {#<th class="text-white">Propriété intellectuelle</th>#}
+                {#<th class="text-white">actions</th>#}
+                <th class="text-white">Voir en détail</th>
+                <th class="text-white">Modifier</th>
+                <th class="text-white">Supprimer</th>
             </tr>
         </thead>
         <tbody>
         {% for start_up in start_ups %}
-            <tr>
-                <td>{{ start_up.id }}</td>
+            <tr class="text-center">
                 <td>{{ start_up.nomEntreprise }}</td>
-                <td>{{ start_up.nomDirigeant }}</td>
-                <td>{{ start_up.adresse }}</td>
-                <td>{{ start_up.fondationDate ? start_up.fondationDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ start_up.siretNumber }}</td>
-                <td>{{ start_up.workerNumber }}</td>
-                <td>{{ start_up.activity }}</td>
-                <td>{{ start_up.intellectualProperty }}</td>
+                {#<td>{{ start_up.nomDirigeant }}</td>#}
+                {#<td>{{ start_up.adresse }}</td>#}
+                <td>{{ start_up.phoneNumber }}</td>
+                <td>{{ start_up.email }}</td>
+                {#<td>{{ start_up.fondationDate ? start_up.fondationDate|date('Y-m-d H:i:s') : '' }}</td>#}
+                {#<td>{{ start_up.siretNumber }}</td>#}
+                {#<td>{{ start_up.workerNumber }}</td>#}
+                {#<td>{{ start_up.activity }}</td>#}
+                {#<td>{{ start_up.intellectualProperty }}</td>#}
+
+                {#<td>#}
+                    {#<a href="{{ path('start_up_show', {'id': start_up.id}) }}">Détail</a>#}
+                    {#<a href="{{ path('start_up_edit', {'id': start_up.id}) }}">Modifier</a>#}
+                {#</td>#}
+
                 <td>
-                    <a href="{{ path('start_up_show', {'id': start_up.id}) }}">show</a>
-                    <a href="{{ path('start_up_edit', {'id': start_up.id}) }}">edit</a>
+                    <a href="{{ path('start_up_show', {'id': start_up.id}) }}"><i class="fas fa-eye"></i></a>
                 </td>
+                <td><a href="{{ path('start_up_edit', {'id': start_up.id}) }}"><i class="fas fa-edit"></i></a></td>
+                <td>{{ include('start_up/_delete_form.html.twig') }}</td>
             </tr>
         {% else %}
             <tr>
@@ -45,5 +61,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('start_up_new') }}">Create new</a>
+    <a href="{{ path('start_up_new') }}">Créer une nouvelle star-up</a>
 {% endblock %}
