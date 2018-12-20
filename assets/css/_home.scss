@@ -6,12 +6,22 @@
   width: 160px;
 }
 
-.nav-tabs {
-  background-color: $primary-color;
+.navbar {
+  background-color: $primary;
   font-family: $font-title;
 }
 
+.fullSite{
+  font-size: 2em;
+  letter-spacing: 2px;
+    .a{
+      letter-spacing: 5px;
+    }
+}
 
+#navbarColor01{
+  margin-left: 50%;
+}
 .backgroundHome {
   background: url("../images/grosLabo.jpg");
   background-repeat: no-repeat;
@@ -38,7 +48,7 @@
   width: 200px;
   height: 200px;
   margin-top: -44px;
-  border: solid $primary-color 5px;
+  border: solid $primary 5px;
   border-radius: 100%;
   display: inline-block;
   box-shadow: 40px/#ffbf9a;
@@ -71,7 +81,7 @@
 .linkName {
   color: white;
   text-shadow: 8px 8px 8px black, 0 0 8em black, 0 0 1em black;
-
+}
 button {
   background-color: $variableBtn-color;
 
