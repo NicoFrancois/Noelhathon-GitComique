@@ -161,4 +161,9 @@ class Service
 
         return $this;
     }
+
+    public function getStartUp(): ?StartUp
+    {
+        return $this->startUp;
+    }
 }

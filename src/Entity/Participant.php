@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,7 +45,7 @@ class Participant
     private $hasResponse;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\EditionEvent", inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="participants")
      */
     private $register;
 
@@ -51,6 +53,11 @@ class Participant
      * @ORM\Column(type="boolean")
      */
     private $isPresent;
+
+    public function __construct()
+    {
+        $this->register = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -117,12 +124,12 @@ class Participant
         return $this;
     }
 
-    public function getRegister(): ?EditionEvent
+    public function getRegister()
     {
         return $this->register;
     }
 
-    public function setRegister(?EditionEvent $register): self
+    public function setRegister(?Event $register): self
     {
         $this->register = $register;
 
@@ -137,6 +144,29 @@ class Participant
     public function setIsPresent(bool $isPresent): self
     {
         $this->isPresent = $isPresent;
+
+        return $this;
+    }
+
+    public function addRegister(Event $register): self
+    {
+        if (!$this->register->contains($register)) {
+            $this->register[] = $register;
+            $register->setParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRegister(Event $register): self
+    {
+        if ($this->register->contains($register)) {
+            $this->register->removeElement($register);
+            // set the owning side to null (unless already changed)
+            if ($register->getParticipant() === $this) {
+                $register->setParticipant(null);
+            }
+        }
 
         return $this;
     }
