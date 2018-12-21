@@ -42,6 +42,16 @@ class Participant
      */
     private $hasResponse;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EditionEvent", inversedBy="participants")
+     */
+    private $register;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPresent;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +113,30 @@ class Participant
     public function setHasResponse(bool $hasResponse): self
     {
         $this->hasResponse = $hasResponse;
+
+        return $this;
+    }
+
+    public function getRegister(): ?EditionEvent
+    {
+        return $this->register;
+    }
+
+    public function setRegister(?EditionEvent $register): self
+    {
+        $this->register = $register;
+
+        return $this;
+    }
+
+    public function getIsPresent(): ?bool
+    {
+        return $this->isPresent;
+    }
+
+    public function setIsPresent(bool $isPresent): self
+    {
+        $this->isPresent = $isPresent;
 
         return $this;
     }

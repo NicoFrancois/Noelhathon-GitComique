@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Event{% endblock %}
+
+{% block body %}
+    <table class="table container">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Présence</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form method="POST">
+        {% for participant in participants %}
+        <tr>
+            <th scope="row">{{ participant.lastname }}</th>
+            <td>{{ participant.name }}</td>
+            <td><input type="checkbox" id="scales" name="scales"
+                       checked value="{{ participant.id }}"></td>
+        </tr>
+        {% endfor %}
+        </form>
+        </tbody>
+    </table>
+{% endblock %}
