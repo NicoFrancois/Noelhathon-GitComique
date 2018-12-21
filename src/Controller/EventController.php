@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Form\EventType;
+use App\Repository\EditionEventRepository;
+use App\Repository\EditionServiceRepository;
 use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,9 +29,9 @@ class EventController extends AbstractController
     /**
     * @Route("/{id}", name="event_2", methods={"GET"})
     */
-    public function coucou(EventRepository $eventRepository): Response
+    public function coucou(EditionServiceRepository $eventRepository): Response
     {
-        return $this->render('event/coucou.html.twig', ['events' => $eventRepository->findAll()]);
+        return $this->render('edition_service/index.html.twig', ['edition_services' => $eventRepository->findAll()]);
     }
 
     /**
