@@ -51,7 +51,10 @@ class EditionEventController extends AbstractController
      */
     public function tableAnalyse(EditionEventRepository $editionEventRepository): Response
     {
-        return $this->render('edition_event/chipo.html.twig', ['edition_events' => $editionEventRepository->findAll()]);
+        return $this->render('edition_event/chipo.html.twig', [
+            'edition_events' => $editionEventRepository->findAll(),
+
+        ]);
     }
     /**
      * @Route("/{id}", name="edition_event_show", methods={"GET"})
