@@ -33,9 +33,15 @@ class Event
      */
     private $editionEvents;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Satisfaction", mappedBy="event")
+     */
+    private $satisfactions;
+
     public function __construct()
     {
         $this->editionEvents = new ArrayCollection();
+        $this->satisfactions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,6 +98,37 @@ class Event
             // set the owning side to null (unless already changed)
             if ($editionEvent->getEvent() === $this) {
                 $editionEvent->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Satisfaction[]
+     */
+    public function getSatisfactions(): Collection
+    {
+        return $this->satisfactions;
+    }
+
+    public function addSatisfaction(Satisfaction $satisfaction): self
+    {
+        if (!$this->satisfactions->contains($satisfaction)) {
+            $this->satisfactions[] = $satisfaction;
+            $satisfaction->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSatisfaction(Satisfaction $satisfaction): self
+    {
+        if ($this->satisfactions->contains($satisfaction)) {
+            $this->satisfactions->removeElement($satisfaction);
+            // set the owning side to null (unless already changed)
+            if ($satisfaction->getEvent() === $this) {
+                $satisfaction->setEvent(null);
             }
         }
 
