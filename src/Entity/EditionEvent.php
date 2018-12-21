@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,22 @@ class EditionEvent
      * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="editionEvents")
      */
     private $event;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Satisfaction", mappedBy="editionEvent")
+     */
+    private $satisfactions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\InternalPartner", mappedBy="editionEvent")
+     */
+    private $internalPartners;
+
+    public function __construct()
+    {
+        $this->satisfactions = new ArrayCollection();
+        $this->internalPartners = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -51,6 +69,68 @@ class EditionEvent
     public function setEvent(?Event $event): self
     {
         $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Satisfaction[]
+     */
+    public function getSatisfactions(): Collection
+    {
+        return $this->satisfactions;
+    }
+
+    public function addSatisfaction(Satisfaction $satisfaction): self
+    {
+        if (!$this->satisfactions->contains($satisfaction)) {
+            $this->satisfactions[] = $satisfaction;
+            $satisfaction->setEditionEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSatisfaction(Satisfaction $satisfaction): self
+    {
+        if ($this->satisfactions->contains($satisfaction)) {
+            $this->satisfactions->removeElement($satisfaction);
+            // set the owning side to null (unless already changed)
+            if ($satisfaction->getEditionEvent() === $this) {
+                $satisfaction->setEditionEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|InternalPartner[]
+     */
+    public function getInternalPartners(): Collection
+    {
+        return $this->internalPartners;
+    }
+
+    public function addInternalPartner(InternalPartner $internalPartner): self
+    {
+        if (!$this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners[] = $internalPartner;
+            $internalPartner->setEditionEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInternalPartner(InternalPartner $internalPartner): self
+    {
+        if ($this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners->removeElement($internalPartner);
+            // set the owning side to null (unless already changed)
+            if ($internalPartner->getEditionEvent() === $this) {
+                $internalPartner->setEditionEvent(null);
+            }
+        }
 
         return $this;
     }

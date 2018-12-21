@@ -37,6 +37,11 @@ class InternalPartner
     private $email;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EditionEvent", inversedBy="internalPartners")
+     */
+    private $editionEvent;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="internalPartners")
      */
     private $startup;
@@ -99,7 +104,17 @@ class InternalPartner
         return $this;
     }
 
-    public function getStartup(): ?StartUp
+    public function getEditionEvent(): ?EditionEvent
+    {
+        return $this->editionEvent;
+    }
+
+    public function setEditionEvent(?EditionEvent $editionEvent): self
+    {
+        $this->editionEvent = $editionEvent;
+    }
+
+        public function getStartup(): ?StartUp
     {
         return $this->startup;
     }
@@ -119,7 +134,6 @@ class InternalPartner
     public function setEvent(?Event $event): self
     {
         $this->event = $event;
-
         return $this;
     }
 }

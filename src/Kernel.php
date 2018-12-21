@@ -33,6 +33,10 @@ class Kernel extends BaseKernel
                 yield new $class();
             }
         }
+        $bundles = array(
+            // ...
+            new \CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+        );
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
