@@ -38,10 +38,16 @@ class EditionEvent
      */
     private $internalPartners;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\StartUp", inversedBy="editionEvents")
+     */
+    private $startup;
+
     public function __construct()
     {
         $this->satisfactions = new ArrayCollection();
         $this->internalPartners = new ArrayCollection();
+        $this->startup = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,6 +136,32 @@ class EditionEvent
             if ($internalPartner->getEditionEvent() === $this) {
                 $internalPartner->setEditionEvent(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StartUp[]
+     */
+    public function getStartup(): Collection
+    {
+        return $this->startup;
+    }
+
+    public function addStartup(StartUp $startup): self
+    {
+        if (!$this->startup->contains($startup)) {
+            $this->startup[] = $startup;
+        }
+
+        return $this;
+    }
+
+    public function removeStartup(StartUp $startup): self
+    {
+        if ($this->startup->contains($startup)) {
+            $this->startup->removeElement($startup);
         }
 
         return $this;
