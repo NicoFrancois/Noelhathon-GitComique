@@ -37,7 +37,7 @@ class Service
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
-
+     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="service")
      */
     private $startUp;
@@ -122,6 +122,7 @@ class Service
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+    }
 
     public function setStartUp(?StartUp $startUp): self
     {
