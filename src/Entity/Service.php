@@ -38,9 +38,19 @@ class Service
      */
     private $description;
 
+     * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="service")
+     */
+    private $startUp;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Satisfaction", mappedBy="service")
+     */
+    private $satisfactions;
+
     public function __construct()
     {
         $this->editionServices = new ArrayCollection();
+        $this->satisfactions = new ArrayCollection();
     }
 
 
@@ -113,8 +123,41 @@ class Service
     {
         $this->description = $description;
 
+    public function setStartUp(?StartUp $startUp): self
+    {
+        $this->startUp = $startUp;
+
         return $this;
     }
 
+    /**
+     * @return Collection|Satisfaction[]
+     */
+    public function getSatisfactions(): Collection
+    {
+        return $this->satisfactions;
+    }
 
+    public function addSatisfaction(Satisfaction $satisfaction): self
+    {
+        if (!$this->satisfactions->contains($satisfaction)) {
+            $this->satisfactions[] = $satisfaction;
+            $satisfaction->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSatisfaction(Satisfaction $satisfaction): self
+    {
+        if ($this->satisfactions->contains($satisfaction)) {
+            $this->satisfactions->removeElement($satisfaction);
+            // set the owning side to null (unless already changed)
+            if ($satisfaction->getService() === $this) {
+                $satisfaction->setService(null);
+            }
+        }
+
+        return $this;
+    }
 }
