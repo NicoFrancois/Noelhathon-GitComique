@@ -94,6 +94,11 @@ class StartUp
      */
     private $event;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\InternalPartner", inversedBy="startUps")
+     */
+    private $internatinalParner;
+
 //      * @ORM\ManyToMany(targetEntity="App\Entity\EditionEvent", mappedBy="startup")
 //      */
 //     private $editionEvents;
@@ -107,6 +112,7 @@ class StartUp
         $this->internalPartners = new ArrayCollection();
 
         $this->event = new ArrayCollection();
+        $this->internatinalParner = new ArrayCollection();
 
 //         $this->editionEvents = new ArrayCollection();
 
@@ -394,6 +400,32 @@ class StartUp
 
         return $this;
     }
+
+/**
+ * @return Collection|InternalPartner[]
+ */
+public function getInternatinalParner(): Collection
+{
+    return $this->internatinalParner;
+}
+
+public function addInternatinalParner(InternalPartner $internatinalParner): self
+{
+    if (!$this->internatinalParner->contains($internatinalParner)) {
+        $this->internatinalParner[] = $internatinalParner;
+    }
+
+    return $this;
+}
+
+public function removeInternatinalParner(InternalPartner $internatinalParner): self
+{
+    if ($this->internatinalParner->contains($internatinalParner)) {
+        $this->internatinalParner->removeElement($internatinalParner);
+    }
+
+    return $this;
+}
 //      * @return Collection|Satisfaction[]
 //      */
 //     public function getSatisfactions(): Collection
