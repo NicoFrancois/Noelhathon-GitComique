@@ -25,7 +25,7 @@ class EventController extends AbstractController
 
 
     /**
-    * @Route("/{id}", name="event_index", methods={"GET"})
+    * @Route("/{id}", name="event_2", methods={"GET"})
     */
     public function coucou(EventRepository $eventRepository): Response
     {
