@@ -23,7 +23,7 @@
                     <td>{{ event.title }}</td>
                     <td>{{ event.type }}</td>
                     <td>
-                        <a href="{{ path('event_show', {'id': event.id}) }}"><i class="fas fa-eye"></i></a>
+                        <a href="{{ path('edition_event_index', {'id': event.id}) }}"><i class="fas fa-eye"></i></a>
                     </td>
                     <td><a href="{{ path('event_edit', {'id': event.id}) }}"><i class="fas fa-edit"></i></a></td>
                     <td>{{ include('event/_delete_form.html.twig') }}</td>
