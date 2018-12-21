@@ -1,26 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}EditionEvent{% endblock %}
+{% block title %}Modifier l'Evenement{% endblock %}
 
 {% block body %}
-    <h1>EditionEvent</h1>
+    <div class="text-center pt-5">
+        <h2 class="text-center">  {{ edition_event.event.title }}  du  {{ edition_event.date ? edition_event.date|date('d-m-Y ') : '' }} </h2>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ edition_event.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ edition_event.date ? edition_event.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
+    <div class="container modifPage justify-content-center">
 
-    <a href="{{ path('edition_event_index') }}">back to list</a>
 
-    <a href="{{ path('edition_event_edit', {'id': edition_event.id}) }}">edit</a>
+        <p>Nombre d'inscrits : {{ edition_event.id }}</p>
+        <p>Total de personnes présentes : {{ edition_event.id }}</p>
+        <p>nombre contacts générés : {{ edition_event.id }}</p>
+        <p>Nombre de startups du LAB'O représentées  : {{ edition_event.id }}</p>
+        <p>Nombre de startups du LAB'O représentées  : {{ edition_event.id }}</p>
+        <p>Nombre de partenaires du LAB'O représentés   : {{ edition_event.id }}</p>
+        <p>Mise en relation qui ont généré du buisness ou une suite    : {{ edition_event.id }}</p>
 
-    {{ include('edition_event/_delete_form.html.twig') }}
+
+        <a href="{{ path('edition_event_index') }}">Voir les réponses au questionnaire de satisfaction</a>
+    </div>
+
 {% endblock %}

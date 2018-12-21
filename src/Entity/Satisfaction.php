@@ -72,6 +72,11 @@ class Satisfaction
      */
     private $email;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EditionEvent", inversedBy="satisfactions")
+     */
+    private $editionEvent;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -205,6 +210,18 @@ class Satisfaction
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getEditionEvent(): ?EditionEvent
+    {
+        return $this->editionEvent;
+    }
+
+    public function setEditionEvent(?EditionEvent $editionEvent): self
+    {
+        $this->editionEvent = $editionEvent;
 
         return $this;
     }
