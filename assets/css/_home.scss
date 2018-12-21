@@ -2,27 +2,27 @@
   width: 220px;
   padding-right: 20%;
 }
+
 .logoLabo {
   width: 120px;
 }
 
+
 .navbar {
-  background-color: $primary;
-}
+    background-color: $primary;
+    font-family: $font-title;
+  }
 
-.nav-tabs {
-  background-color: $light-color;
-
-  font-family: $font-title;
-}
 button {
   background-color: $variableBtn-color;
 }
 
+
 .navbar {
   background-color: $primary;
   font-family: $font-title;
 }
+
 
 .fullSite{
   font-size: 2em;

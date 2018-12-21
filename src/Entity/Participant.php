@@ -31,6 +31,12 @@ class Participant
      */
     private $company;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="participants")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $society;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +74,18 @@ class Participant
     public function setCompany(string $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    public function getSociety(): ?StartUp
+    {
+        return $this->society;
+    }
+
+    public function setSociety(?StartUp $society): self
+    {
+        $this->society = $society;
 
         return $this;
     }

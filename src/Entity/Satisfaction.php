@@ -72,6 +72,16 @@ class Satisfaction
      */
     private $email;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="satisfactions")
+     */
+    private $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Service", inversedBy="satisfactions")
+     */
+    private $service;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -205,6 +215,30 @@ class Satisfaction
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): self
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    public function getService(): ?Service
+    {
+        return $this->service;
+    }
+
+    public function setService(?Service $service): self
+    {
+        $this->service = $service;
 
         return $this;
     }
