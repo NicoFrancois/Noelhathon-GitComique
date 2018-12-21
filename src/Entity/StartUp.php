@@ -88,12 +88,18 @@ class StartUp
      */
     private $internalPartners;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Event", inversedBy="startUps")
+     */
+    private $event;
+
     public function __construct()
     {
         $this->service = new ArrayCollection();
         $this->satisfactions = new ArrayCollection();
         $this->participants = new ArrayCollection();
         $this->internalPartners = new ArrayCollection();
+        $this->event = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -325,6 +331,32 @@ class StartUp
             if ($internalPartner->getStartup() === $this) {
                 $internalPartner->setStartup(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvent(): Collection
+    {
+        return $this->event;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->event->contains($event)) {
+            $this->event[] = $event;
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->event->contains($event)) {
+            $this->event->removeElement($event);
         }
 
         return $this;
