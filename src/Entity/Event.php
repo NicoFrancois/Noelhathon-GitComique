@@ -38,10 +38,16 @@ class Event
      */
     private $satisfactions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\InternalPartner", mappedBy="event")
+     */
+    private $internalPartners;
+
     public function __construct()
     {
         $this->editionEvents = new ArrayCollection();
         $this->satisfactions = new ArrayCollection();
+        $this->internalPartners = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,6 +135,37 @@ class Event
             // set the owning side to null (unless already changed)
             if ($satisfaction->getEvent() === $this) {
                 $satisfaction->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|InternalPartner[]
+     */
+    public function getInternalPartners(): Collection
+    {
+        return $this->internalPartners;
+    }
+
+    public function addInternalPartner(InternalPartner $internalPartner): self
+    {
+        if (!$this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners[] = $internalPartner;
+            $internalPartner->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInternalPartner(InternalPartner $internalPartner): self
+    {
+        if ($this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners->removeElement($internalPartner);
+            // set the owning side to null (unless already changed)
+            if ($internalPartner->getEvent() === $this) {
+                $internalPartner->setEvent(null);
             }
         }
 

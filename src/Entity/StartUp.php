@@ -83,11 +83,17 @@ class StartUp
      */
     private $participants;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\InternalPartner", mappedBy="startup")
+     */
+    private $internalPartners;
+
     public function __construct()
     {
         $this->service = new ArrayCollection();
         $this->satisfactions = new ArrayCollection();
         $this->participants = new ArrayCollection();
+        $this->internalPartners = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -302,6 +308,37 @@ class StartUp
             // set the owning side to null (unless already changed)
             if ($participant->getSociety() === $this) {
                 $participant->setSociety(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|InternalPartner[]
+     */
+    public function getInternalPartners(): Collection
+    {
+        return $this->internalPartners;
+    }
+
+    public function addInternalPartner(InternalPartner $internalPartner): self
+    {
+        if (!$this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners[] = $internalPartner;
+            $internalPartner->setStartup($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInternalPartner(InternalPartner $internalPartner): self
+    {
+        if ($this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners->removeElement($internalPartner);
+            // set the owning side to null (unless already changed)
+            if ($internalPartner->getStartup() === $this) {
+                $internalPartner->setStartup(null);
             }
         }
 
