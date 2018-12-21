@@ -36,6 +36,16 @@ class InternalPartner
      */
     private $email;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="internalPartners")
+     */
+    private $startup;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="internalPartners")
+     */
+    private $event;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +95,30 @@ class InternalPartner
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getStartup(): ?StartUp
+    {
+        return $this->startup;
+    }
+
+    public function setStartup(?StartUp $startup): self
+    {
+        $this->startup = $startup;
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): self
+    {
+        $this->event = $event;
 
         return $this;
     }
