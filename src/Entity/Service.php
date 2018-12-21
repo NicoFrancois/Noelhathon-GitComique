@@ -34,6 +34,10 @@ class Service
     private $editionServices;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
      * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="service")
      */
     private $startUp;
@@ -43,7 +47,6 @@ class Service
      */
     private $satisfactions;
 
-  
     public function __construct()
     {
         $this->editionServices = new ArrayCollection();
@@ -110,6 +113,15 @@ class Service
 
         return $this;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
     public function setStartUp(?StartUp $startUp): self
     {
