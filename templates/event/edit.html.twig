@@ -3,11 +3,46 @@
 {% block title %}Edit Event{% endblock %}
 
 {% block body %}
-    <h1>Edit Event</h1>
-
-    {{ include('event/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('event_index') }}">back to list</a>
-
-    {{ include('event/_delete_form.html.twig') }}
+    <table class="table container">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Avez-vous appréciez cet événement ?</th>
+            <th scope="col">Quelles améliorations suggéreriez-vous ?</th>
+            <th scope="col">Cet événement vous a-t'il permis d'élargir votre réseau ?</th>
+            <th scope="col">Combien de contact avez-vous pu établir lors de cet événement ?
+            <th scope="col">Comment avez-vous connu l'existence de cet événement ?</th>
+            <th scope="col">Commentaire</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td></td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td></td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td></td>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </table>
 {% endblock %}
