@@ -69,7 +69,7 @@ class StartUp
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="startUp")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="startUps")
      */
     private $service;
 
@@ -229,45 +229,30 @@ class StartUp
         return $this->service;
     }
 
-    public function addService(Service $service): self
+    public function addServouse(Service $service): self
     {
         if (!$this->service->contains($service)) {
             $this->service[] = $service;
-            $service->setStartUp($this);
         }
 
         return $this;
     }
 
-    public function removeService(Service $service): self
+    public function removeServouse(Service $service): self
     {
         if ($this->service->contains($service)) {
             $this->service->removeElement($service);
-            // set the owning side to null (unless already changed)
-            if ($service->getStartUp() === $this) {
-                $service->setStartUp(null);
-            }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection|Satisfaction[]
+    /*
+     * @param mixed $service
      */
-    public function getSatisfactions(): Collection
+    public function setService($service): void
     {
-        return $this->satisfactions;
-    }
-
-    public function addSatisfaction(Satisfaction $satisfaction): self
-    {
-        if (!$this->satisfactions->contains($satisfaction)) {
-            $this->satisfactions[] = $satisfaction;
-            $satisfaction->setSociety($this);
-        }
-
-        return $this;
+        $this->service[] = $service;
     }
 
     public function removeSatisfaction(Satisfaction $satisfaction): self
@@ -344,4 +329,33 @@ class StartUp
 
         return $this;
     }
+//      * @return Collection|Satisfaction[]
+//      */
+//     public function getSatisfactions(): Collection
+//     {
+//         return $this->satisfactions;
+//     }
+
+//     public function addSatisfaction(Satisfaction $satisfaction): self
+//     {
+//         if (!$this->satisfactions->contains($satisfaction)) {
+//             $this->satisfactions[] = $satisfaction;
+//             $satisfaction->setSociety($this);
+//         }
+
+//         return $this;
+//     }
+
+//     public function removeSatisfaction(Satisfaction $satisfaction): self
+//     {
+//         if ($this->satisfactions->contains($satisfaction)) {
+//             $this->satisfactions->removeElement($satisfaction);
+//             // set the owning side to null (unless already changed)
+//             if ($satisfaction->getSociety() === $this) {
+//                 $satisfaction->setSociety(null);
+//             }
+//         }
+
+//         return $this;
+//     }
 }

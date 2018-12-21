@@ -18,7 +18,6 @@ class EditionService
      */
     private $id;
 
-
     /**
      * @ORM\Column(type="datetime")
      */
@@ -29,10 +28,22 @@ class EditionService
      */
     private $service;
 
+    public function __construct()
+    {
+        $this->service = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return Collection|Service[]
+     */
+    public function getService(): Service
+    {
+        return $this->service;
     }
 
 
@@ -46,11 +57,6 @@ class EditionService
         $this->date = $date;
 
         return $this;
-    }
-
-    public function getService(): ?Service
-    {
-        return $this->service;
     }
 
     public function setService(?Service $service): self
