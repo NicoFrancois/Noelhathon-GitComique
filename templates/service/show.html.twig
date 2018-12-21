@@ -5,14 +5,14 @@
 {% block body %}
     <div class="container">
         <div class="row align-items-center">
-        <a class="col-3" href="{{ path('service_index') }}"><i class="fas fa-chevron-left mr-3"></i>Retour a la liste</a>
+        <a class="col-3" href="{{ path('service_index') }}"><i class="fas fa-chevron-left mr-3"></i>Retour à la liste</a>
          <h1 class="col-xs-12 col-md-7 mt-5 text-center">{{ service.title }}</h1>
         </div>
-        <a class="mt-5 mb-5" href="{{ path('edition_service_index') }}"><button type="button" class="btn bg-primary mt-5 text-white">Voir les differentes editions</button></a>
+        <a class="mt-5 mb-5" href="{{ path('edition_service_index') }}"><button type="button" class="btn bg-primary mt-5 text-white">Voir les differentes éditions</button></a>
 
         <h3 class="mt-5">Description du service :</h3>
         <p>{{ service.description }}</p>
-        <h2 class="text-center mt-5 mb-5">Evolution du nombre de participant de ce service :</h2>
+        <h2 class="text-center mt-5 mb-5">Évolution du nombre de participants de ce service :</h2>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
         <canvas id="myChart" class="mb-5" width="400" height="200"></canvas>
         <script>

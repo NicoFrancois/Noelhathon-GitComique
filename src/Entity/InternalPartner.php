@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,6 +52,16 @@ class InternalPartner
      * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="internalPartners")
      */
     private $event;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\StartUp", mappedBy="internatinalParner")
+     */
+    private $startUps;
+
+    public function __construct()
+    {
+        $this->startUps = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -134,6 +146,34 @@ class InternalPartner
     public function setEvent(?Event $event): self
     {
         $this->event = $event;
+        return $this;
+    }
+
+    /**
+     * @return Collection|StartUp[]
+     */
+    public function getStartUps(): Collection
+    {
+        return $this->startUps;
+    }
+
+    public function addStartUp(StartUp $startUp): self
+    {
+        if (!$this->startUps->contains($startUp)) {
+            $this->startUps[] = $startUp;
+            $startUp->addInternatinalParner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStartUp(StartUp $startUp): self
+    {
+        if ($this->startUps->contains($startUp)) {
+            $this->startUps->removeElement($startUp);
+            $startUp->removeInternatinalParner($this);
+        }
+
         return $this;
     }
 }
