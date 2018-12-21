@@ -89,9 +89,15 @@ class StartUp
     private $internalPartners;
 
     /**
+
      * @ORM\ManyToMany(targetEntity="App\Entity\Event", inversedBy="startUps")
      */
     private $event;
+
+//      * @ORM\ManyToMany(targetEntity="App\Entity\EditionEvent", mappedBy="startup")
+//      */
+//     private $editionEvents;
+
 
     public function __construct()
     {
@@ -99,7 +105,11 @@ class StartUp
         $this->satisfactions = new ArrayCollection();
         $this->participants = new ArrayCollection();
         $this->internalPartners = new ArrayCollection();
+
         $this->event = new ArrayCollection();
+
+//         $this->editionEvents = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -337,6 +347,7 @@ class StartUp
     }
 
     /**
+// <<<<<<< eventStartUp
      * @return Collection|Event[]
      */
     public function getEvent(): Collection
@@ -348,15 +359,37 @@ class StartUp
     {
         if (!$this->event->contains($event)) {
             $this->event[] = $event;
+// =======
+//      * @return Collection|EditionEvent[]
+//      */
+//     public function getEditionEvents(): Collection
+//     {
+//         return $this->editionEvents;
+//     }
+
+//     public function addEditionEvent(EditionEvent $editionEvent): self
+//     {
+//         if (!$this->editionEvents->contains($editionEvent)) {
+//             $this->editionEvents[] = $editionEvent;
+//             $editionEvent->addStartup($this);
+// >>>>>>> dev
         }
 
         return $this;
     }
 
+// <<<<<<< eventStartUp
     public function removeEvent(Event $event): self
     {
         if ($this->event->contains($event)) {
             $this->event->removeElement($event);
+// =======
+//     public function removeEditionEvent(EditionEvent $editionEvent): self
+//     {
+//         if ($this->editionEvents->contains($editionEvent)) {
+//             $this->editionEvents->removeElement($editionEvent);
+//             $editionEvent->removeStartup($this);
+// >>>>>>> dev
         }
 
         return $this;

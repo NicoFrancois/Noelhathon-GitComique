@@ -33,6 +33,7 @@ class Event
      */
     private $editionEvents;
 
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Satisfaction", mappedBy="event")
      */
@@ -47,6 +48,7 @@ class Event
      * @ORM\ManyToMany(targetEntity="App\Entity\StartUp", mappedBy="event")
      */
     private $startUps;
+
 
     public function __construct()
     {
@@ -205,4 +207,5 @@ class Event
 
         return $this;
     }
+
 }
