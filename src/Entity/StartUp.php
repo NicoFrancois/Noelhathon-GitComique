@@ -353,7 +353,6 @@ class StartUp
     }
 
     /**
-// <<<<<<< eventStartUp
      * @return Collection|Event[]
      */
     public function getEvent(): Collection
@@ -365,6 +364,7 @@ class StartUp
     {
         if (!$this->event->contains($event)) {
             $this->event[] = $event;
+        }
     }
     public function removeEvent(Event $event): self
     {
