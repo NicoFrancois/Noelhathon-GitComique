@@ -37,6 +37,11 @@ class Participant
      */
     private $society;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hasResponse;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Participant
     public function setSociety(?StartUp $society): self
     {
         $this->society = $society;
+
+        return $this;
+    }
+
+    public function getHasResponse(): ?bool
+    {
+        return $this->hasResponse;
+    }
+
+    public function setHasResponse(bool $hasResponse): self
+    {
+        $this->hasResponse = $hasResponse;
 
         return $this;
     }
