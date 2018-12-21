@@ -51,7 +51,11 @@ class EventController extends AbstractController
      */
     public function show(Event $event): Response
     {
-        return $this->render('event/show.html.twig', ['event' => $event]);
+        return $this->render('event/show.html.twig', [
+            'event' => $event,
+            'annees' => [2001,2002,2003],
+            'participants' => [12,3,7]
+            ]);
     }
 
     /**
