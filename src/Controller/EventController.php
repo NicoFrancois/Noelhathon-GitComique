@@ -23,6 +23,15 @@ class EventController extends AbstractController
         return $this->render('event/index.html.twig', ['events' => $eventRepository->findAll()]);
     }
 
+
+    /**
+    * @Route("/{id}", name="event_index", methods={"GET"})
+    */
+    public function coucou(EventRepository $eventRepository): Response
+    {
+        return $this->render('event/coucou.html.twig', ['events' => $eventRepository->findAll()]);
+    }
+
     /**
      * @Route("/new", name="event_new", methods={"GET","POST"})
      */

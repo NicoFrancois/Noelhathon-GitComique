@@ -365,43 +365,33 @@ class StartUp
     {
         if (!$this->event->contains($event)) {
             $this->event[] = $event;
-// =======
-//      * @return Collection|EditionEvent[]
-//      */
-//     public function getEditionEvents(): Collection
-//     {
-//         return $this->editionEvents;
-//     }
-
-//     public function addEditionEvent(EditionEvent $editionEvent): self
-//     {
-//         if (!$this->editionEvents->contains($editionEvent)) {
-//             $this->editionEvents[] = $editionEvent;
-//             $editionEvent->addStartup($this);
-// >>>>>>> dev
-        }
-
-        return $this;
     }
-
-// <<<<<<< eventStartUp
     public function removeEvent(Event $event): self
     {
         if ($this->event->contains($event)) {
             $this->event->removeElement($event);
-// =======
-//     public function removeEditionEvent(EditionEvent $editionEvent): self
-//     {
-//         if ($this->editionEvents->contains($editionEvent)) {
-//             $this->editionEvents->removeElement($editionEvent);
-//             $editionEvent->removeStartup($this);
-// >>>>>>> dev
         }
 
         return $this;
     }
 
-/**
+public function addService(Service $service): self
+{
+    if (!$this->service->contains($service)) {
+        $this->service[] = $service;
+    }
+
+    return $this;
+}
+
+public function removeService(Service $service): self
+{
+    if ($this->service->contains($service)) {
+        $this->service->removeElement($service);
+    }
+}
+      
+      /**
  * @return Collection|InternalPartner[]
  */
 public function getInternatinalParner(): Collection
@@ -418,41 +408,27 @@ public function addInternatinalParner(InternalPartner $internatinalParner): self
     return $this;
 }
 
+/**
+ * @return Collection|Satisfaction[]
+ */
+public function getSatisfactions(): Collection
+{
+    return $this->satisfactions;
+}
+
+public function addSatisfaction(Satisfaction $satisfaction): self
+{
+    if (!$this->satisfactions->contains($satisfaction)) {
+        $this->satisfactions[] = $satisfaction;
+        $satisfaction->setSociety($this);
+    }
+}
+      
 public function removeInternatinalParner(InternalPartner $internatinalParner): self
 {
     if ($this->internatinalParner->contains($internatinalParner)) {
         $this->internatinalParner->removeElement($internatinalParner);
     }
-
     return $this;
 }
-//      * @return Collection|Satisfaction[]
-//      */
-//     public function getSatisfactions(): Collection
-//     {
-//         return $this->satisfactions;
-//     }
-
-//     public function addSatisfaction(Satisfaction $satisfaction): self
-//     {
-//         if (!$this->satisfactions->contains($satisfaction)) {
-//             $this->satisfactions[] = $satisfaction;
-//             $satisfaction->setSociety($this);
-//         }
-
-//         return $this;
-//     }
-
-//     public function removeSatisfaction(Satisfaction $satisfaction): self
-//     {
-//         if ($this->satisfactions->contains($satisfaction)) {
-//             $this->satisfactions->removeElement($satisfaction);
-//             // set the owning side to null (unless already changed)
-//             if ($satisfaction->getSociety() === $this) {
-//                 $satisfaction->setSociety(null);
-//             }
-//         }
-
-//         return $this;
-//     }
 }
