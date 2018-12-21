@@ -60,7 +60,8 @@ class StartUpController extends AbstractController
     {
         return $this->render('start_up/show.html.twig', [
             'start_up' => $startUp,
-            'service' => $startUp->getService()->toArray()
+            'service' => $startUp->getService()->toArray(),
+            'events' => $startUp->getEvent()->toArray()
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Event;
 use App\Entity\StartUp;
 use App\Entity\Service;
 use phpDocumentor\Reflection\Types\Integer;
@@ -13,6 +14,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class StartUpType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -28,6 +33,11 @@ class StartUpType extends AbstractType
             ->add('intellectualProperty')
             ->add('service', EntityType::class, [
                 'class' => Service::class,
+                'choice_label' => 'title',
+                'multiple' => true,
+            ])
+            ->add('event', EntityType::class, [
+                'class' => Event::class,
                 'choice_label' => 'title',
                 'multiple' => true,
             ]);

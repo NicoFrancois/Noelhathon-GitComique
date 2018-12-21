@@ -33,11 +33,29 @@ class Event
      */
     private $editionEvents;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Satisfaction", mappedBy="event")
+     */
+    private $satisfactions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\InternalPartner", mappedBy="event")
+     */
+    private $internalPartners;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\StartUp", mappedBy="event")
+     */
+    private $startUps;
+
+
     public function __construct()
     {
         $this->editionEvents = new ArrayCollection();
         $this->satisfactions = new ArrayCollection();
         $this->internalPartners = new ArrayCollection();
+        $this->startUps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,6 +113,96 @@ class Event
             if ($editionEvent->getEvent() === $this) {
                 $editionEvent->setEvent(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Satisfaction[]
+     */
+    public function getSatisfactions(): Collection
+    {
+        return $this->satisfactions;
+    }
+
+    public function addSatisfaction(Satisfaction $satisfaction): self
+    {
+        if (!$this->satisfactions->contains($satisfaction)) {
+            $this->satisfactions[] = $satisfaction;
+            $satisfaction->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSatisfaction(Satisfaction $satisfaction): self
+    {
+        if ($this->satisfactions->contains($satisfaction)) {
+            $this->satisfactions->removeElement($satisfaction);
+            // set the owning side to null (unless already changed)
+            if ($satisfaction->getEvent() === $this) {
+                $satisfaction->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|InternalPartner[]
+     */
+    public function getInternalPartners(): Collection
+    {
+        return $this->internalPartners;
+    }
+
+    public function addInternalPartner(InternalPartner $internalPartner): self
+    {
+        if (!$this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners[] = $internalPartner;
+            $internalPartner->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInternalPartner(InternalPartner $internalPartner): self
+    {
+        if ($this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners->removeElement($internalPartner);
+            // set the owning side to null (unless already changed)
+            if ($internalPartner->getEvent() === $this) {
+                $internalPartner->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StartUp[]
+     */
+    public function getStartUps(): Collection
+    {
+        return $this->startUps;
+    }
+
+    public function addStartUp(StartUp $startUp): self
+    {
+        if (!$this->startUps->contains($startUp)) {
+            $this->startUps[] = $startUp;
+            $startUp->addEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStartUp(StartUp $startUp): self
+    {
+        if ($this->startUps->contains($startUp)) {
+            $this->startUps->removeElement($startUp);
+            $startUp->removeEvent($this);
         }
 
         return $this;

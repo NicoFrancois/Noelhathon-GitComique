@@ -89,9 +89,15 @@ class StartUp
     private $internalPartners;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\EditionEvent", mappedBy="startup")
+
+     * @ORM\ManyToMany(targetEntity="App\Entity\Event", inversedBy="startUps")
      */
-    private $editionEvents;
+    private $event;
+
+//      * @ORM\ManyToMany(targetEntity="App\Entity\EditionEvent", mappedBy="startup")
+//      */
+//     private $editionEvents;
+
 
     public function __construct()
     {
@@ -99,7 +105,11 @@ class StartUp
         $this->satisfactions = new ArrayCollection();
         $this->participants = new ArrayCollection();
         $this->internalPartners = new ArrayCollection();
-        $this->editionEvents = new ArrayCollection();
+
+        $this->event = new ArrayCollection();
+
+//         $this->editionEvents = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -337,28 +347,49 @@ class StartUp
     }
 
     /**
-     * @return Collection|EditionEvent[]
+// <<<<<<< eventStartUp
+     * @return Collection|Event[]
      */
-    public function getEditionEvents(): Collection
+    public function getEvent(): Collection
     {
-        return $this->editionEvents;
+        return $this->event;
     }
 
-    public function addEditionEvent(EditionEvent $editionEvent): self
+    public function addEvent(Event $event): self
     {
-        if (!$this->editionEvents->contains($editionEvent)) {
-            $this->editionEvents[] = $editionEvent;
-            $editionEvent->addStartup($this);
+        if (!$this->event->contains($event)) {
+            $this->event[] = $event;
+// =======
+//      * @return Collection|EditionEvent[]
+//      */
+//     public function getEditionEvents(): Collection
+//     {
+//         return $this->editionEvents;
+//     }
+
+//     public function addEditionEvent(EditionEvent $editionEvent): self
+//     {
+//         if (!$this->editionEvents->contains($editionEvent)) {
+//             $this->editionEvents[] = $editionEvent;
+//             $editionEvent->addStartup($this);
+// >>>>>>> dev
         }
 
         return $this;
     }
 
-    public function removeEditionEvent(EditionEvent $editionEvent): self
+// <<<<<<< eventStartUp
+    public function removeEvent(Event $event): self
     {
-        if ($this->editionEvents->contains($editionEvent)) {
-            $this->editionEvents->removeElement($editionEvent);
-            $editionEvent->removeStartup($this);
+        if ($this->event->contains($event)) {
+            $this->event->removeElement($event);
+// =======
+//     public function removeEditionEvent(EditionEvent $editionEvent): self
+//     {
+//         if ($this->editionEvents->contains($editionEvent)) {
+//             $this->editionEvents->removeElement($editionEvent);
+//             $editionEvent->removeStartup($this);
+// >>>>>>> dev
         }
 
         return $this;
