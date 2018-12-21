@@ -73,7 +73,11 @@ class Satisfaction
     private $email;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="satisfactions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\EditionEvent", inversedBy="satisfactions")
+     */
+    private $editionEvent;
+/**
+ * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="satisfactions")
      */
     private $event;
 
@@ -219,6 +223,16 @@ class Satisfaction
         return $this;
     }
 
+    public function getEditionEvent(): ?EditionEvent
+    {
+        return $this->editionEvent;
+    }
+
+    public function setEditionEvent(?EditionEvent $editionEvent): self
+    {
+        $this->editionEvent = $editionEvent;
+    }
+
     public function getEvent(): ?Event
     {
         return $this->event;
@@ -239,7 +253,6 @@ class Satisfaction
     public function setService(?Service $service): self
     {
         $this->service = $service;
-
         return $this;
     }
 }

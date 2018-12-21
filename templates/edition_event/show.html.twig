@@ -3,23 +3,23 @@
 {% block title %}Modifier l'Evenement{% endblock %}
 
 {% block body %}
-<div class="text-center pt-5">
-    <h2 class="text-center">  {{ edition_event.event.title }}  du  {{ edition_event.date ? edition_event.date|date('d-m-Y ') : '' }} </h2>
+    <div class="text-center pt-5">
+        <h2 class="text-center">  {{ edition_event.event.title }}  du  {{ edition_event.date ? edition_event.date|date('d-m-Y ') : '' }} </h2>
 
-</div>
-<div class="container modifPage justify-content-center">
-
-
-           <p>Nombre d'inscrits : {{ edition_event.id }}</p>
-           <p>Total de personnes présentes : {{ edition_event.id }}</p>
-           <p>nombre contacts générés : {{ edition_event.id }}</p>
-           <p>Nombre de startups du LAB'O représentées  : {{ edition_event.id }}</p>
-           <p>Nombre de startups du LAB'O représentées  : {{ edition_event.id }}</p>
-           <p>Nombre de partenaires du LAB'O représentés   : {{ edition_event.id }}</p>
-           <p>Mise en relation qui ont généré du buisness ou une suite    : {{ edition_event.id }}</p>
+    </div>
+    <div class="container modifPage justify-content-center">
 
 
-    <a href="{{ path('edition_event_index') }}">Voir les réponses au questionnaire de satisfaction</a>
+        <p>Nombre d'inscrits : {{ edition_event.id }}</p>
+        <p>Total de personnes présentes : {{ edition_event.id }}</p>
+        <p>nombre contacts générés : {{ edition_event.id }}</p>
+        <p>Nombre de startups du LAB'O représentées  : {{ edition_event.id }}</p>
+        <p>Nombre de startups du LAB'O représentées  : {{ edition_event.id }}</p>
+        <p>Nombre de partenaires du LAB'O représentés   : {{ edition_event.id }}</p>
+        <p>Mise en relation qui ont généré du buisness ou une suite    : {{ edition_event.id }}</p>
+
+
+        <a href="{{ path('edition_event_index') }}">Voir les réponses au questionnaire de satisfaction</a>
     </div>
 
 {% endblock %}
