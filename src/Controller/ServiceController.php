@@ -51,7 +51,12 @@ class ServiceController extends AbstractController
      */
     public function show(Service $service): Response
     {
-        return $this->render('service/show.html.twig', ['service' => $service]);
+
+        return $this->render('service/show.html.twig', [
+            'service' => $service,
+            'annees' => [2001,2002,2003],
+            'participants' => [12,3,7],
+        ]);
     }
 
     /**
