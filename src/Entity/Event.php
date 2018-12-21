@@ -45,9 +45,9 @@ class Event
     private $internalPartners;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\StartUp", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="event")
      */
-    private $startUps;
+    private $participants;
 
 
     public function __construct()
@@ -56,6 +56,7 @@ class Event
         $this->satisfactions = new ArrayCollection();
         $this->internalPartners = new ArrayCollection();
         $this->startUps = new ArrayCollection();
+        $this->participants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -183,27 +184,14 @@ class Event
     /**
      * @return Collection|StartUp[]
      */
-    public function getStartUps(): Collection
+    public function getParticipants(): Collection
     {
         return $this->startUps;
     }
 
-    public function addStartUp(StartUp $startUp): self
+    public function setParticipants(?Participant $participants): self
     {
-        if (!$this->startUps->contains($startUp)) {
-            $this->startUps[] = $startUp;
-            $startUp->addEvent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStartUp(StartUp $startUp): self
-    {
-        if ($this->startUps->contains($startUp)) {
-            $this->startUps->removeElement($startUp);
-            $startUp->removeEvent($this);
-        }
+        $this->participants = $participants;
 
         return $this;
     }

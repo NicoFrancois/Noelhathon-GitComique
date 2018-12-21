@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container">
         <div class="row justify-content-between">
-            <h1 class="mb-5 mt-5 text-center">Toutes les editions de l'évènement</h1>
+            <h1 class="mb-5 mt-5 text-center">Toutes les editions du service</h1>
         </div>
         <table class="table mt-5">
             <thead class="thead bg-primary">
@@ -16,12 +16,12 @@
             </tr>
             </thead>
             <tbody>
-            {% for edition in edition_events %}
+            {% for edition in edition_services %}
                 <tr class="text-center">
                     <td>{{ edition.date|date('d/m/Y') }}</td>
-                    <td>{{ edition.participants|length }}</td>
+                    <td></td>
                     <td>
-                        <a href="{{ path('edition_event_show', {'id': edition.id}) }}"><i class="fas fa-eye"></i></a>
+                        <a href="{{ path('edition_service_show', {'id': edition.id}) }}"><i class="fas fa-eye"></i></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -29,4 +29,3 @@
         </table>
     </div>
 {% endblock %}
-

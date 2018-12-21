@@ -62,9 +62,9 @@ class ParticipantController extends AbstractController
     }
 
     /**
-     * @Route("/event/{id}", name="participant_lol", methods={"GET","POST"})
+     * @Route("/{id}/event", name="participant_lol", methods={"GET","POST"})
      */
-    public function participentEvent(Participant $participant, Request $request, EditionEventRepository $editionEventRepository, EventRepository $eventRepository): Response
+    public function participentEvent(Participant $participant, Request $request): Response
     {
         $form = $this->createForm(PartnerAddType::class, $participant);
         $form->handleRequest($request);

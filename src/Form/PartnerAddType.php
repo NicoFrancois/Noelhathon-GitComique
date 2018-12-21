@@ -16,8 +16,8 @@ class PartnerAddType extends AbstractType
     {
         $builder
             ->add('register', EntityType::class, [
-                'class' => EditionEvent::class,
-                'choice_label' => 'name'
+                'class' => Event::class,
+                'choice_label' => 'title'
             ])
         ;
     }

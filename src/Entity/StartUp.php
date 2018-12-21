@@ -394,6 +394,42 @@ class StartUp
 
         return $this;
     }
+
+public function addService(Service $service): self
+{
+    if (!$this->service->contains($service)) {
+        $this->service[] = $service;
+    }
+
+    return $this;
+}
+
+public function removeService(Service $service): self
+{
+    if ($this->service->contains($service)) {
+        $this->service->removeElement($service);
+    }
+
+    return $this;
+}
+
+/**
+ * @return Collection|Satisfaction[]
+ */
+public function getSatisfactions(): Collection
+{
+    return $this->satisfactions;
+}
+
+public function addSatisfaction(Satisfaction $satisfaction): self
+{
+    if (!$this->satisfactions->contains($satisfaction)) {
+        $this->satisfactions[] = $satisfaction;
+        $satisfaction->setSociety($this);
+    }
+
+    return $this;
+}
 //      * @return Collection|Satisfaction[]
 //      */
 //     public function getSatisfactions(): Collection
