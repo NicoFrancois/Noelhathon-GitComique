@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Participant;
+use App\Entity\StartUp;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,6 +17,10 @@ class ParticipantType extends AbstractType
             ->add('name')
             ->add('lastname')
             ->add('company')
+            ->add('society', EntityType::class, [
+                'choice_label' => 'nomEntreprise',
+                'class' => StartUp::class
+            ])
         ;
     }
 
