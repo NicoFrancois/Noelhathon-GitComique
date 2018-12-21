@@ -3,19 +3,18 @@
 {% block title %}EditionService{% endblock %}
 
 {% block body %}
-    <h1>EditionService</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ edition_service.id }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('edition_service_index') }}">back to list</a>
+    <div class="container-fluid">
+    <div class="row align-items-center">
+        <a class="col-3" href="{{ path('edition_service_index') }}"><i class="fas fa-chevron-left"></i>Retour a la liste</a>
+        <h2 class="text-center"> {{ edition_service.service.title }} du {{ edition_service.date|date('d/m/Y') }}</h2>
+    </div>
+    </div>
+    <div class="container mt-5">
+    <p>Lieu : </p>
+    <p>Nombre de participants attendus :</p>
+    <p>Nombre de participants presents :</p>
+    <p>Voir les retours:</p>
 
     <a href="{{ path('edition_service_edit', {'id': edition_service.id}) }}">edit</a>
-
+    </div>
 {% endblock %}

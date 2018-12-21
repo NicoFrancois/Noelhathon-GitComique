@@ -69,7 +69,7 @@ class StartUp
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="startUp")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="startUps")
      */
     private $service;
 
@@ -78,10 +78,22 @@ class StartUp
      */
     private $satisfactions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="society")
+     */
+    private $participants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\InternalPartner", mappedBy="startup")
+     */
+    private $internalPartners;
+
     public function __construct()
     {
         $this->service = new ArrayCollection();
         $this->satisfactions = new ArrayCollection();
+        $this->participants = new ArrayCollection();
+        $this->internalPartners = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -217,45 +229,30 @@ class StartUp
         return $this->service;
     }
 
-    public function addService(Service $service): self
+    public function addServouse(Service $service): self
     {
         if (!$this->service->contains($service)) {
             $this->service[] = $service;
-            $service->setStartUp($this);
         }
 
         return $this;
     }
 
-    public function removeService(Service $service): self
+    public function removeServouse(Service $service): self
     {
         if ($this->service->contains($service)) {
             $this->service->removeElement($service);
-            // set the owning side to null (unless already changed)
-            if ($service->getStartUp() === $this) {
-                $service->setStartUp(null);
-            }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection|Satisfaction[]
+    /*
+     * @param mixed $service
      */
-    public function getSatisfactions(): Collection
+    public function setService($service): void
     {
-        return $this->satisfactions;
-    }
-
-    public function addSatisfaction(Satisfaction $satisfaction): self
-    {
-        if (!$this->satisfactions->contains($satisfaction)) {
-            $this->satisfactions[] = $satisfaction;
-            $satisfaction->setSociety($this);
-        }
-
-        return $this;
+        $this->service[] = $service;
     }
 
     public function removeSatisfaction(Satisfaction $satisfaction): self
@@ -270,4 +267,95 @@ class StartUp
 
         return $this;
     }
+
+    /**
+     * @return Collection|Participant[]
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+            $participant->setSociety($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): self
+    {
+        if ($this->participants->contains($participant)) {
+            $this->participants->removeElement($participant);
+            // set the owning side to null (unless already changed)
+            if ($participant->getSociety() === $this) {
+                $participant->setSociety(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|InternalPartner[]
+     */
+    public function getInternalPartners(): Collection
+    {
+        return $this->internalPartners;
+    }
+
+    public function addInternalPartner(InternalPartner $internalPartner): self
+    {
+        if (!$this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners[] = $internalPartner;
+            $internalPartner->setStartup($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInternalPartner(InternalPartner $internalPartner): self
+    {
+        if ($this->internalPartners->contains($internalPartner)) {
+            $this->internalPartners->removeElement($internalPartner);
+            // set the owning side to null (unless already changed)
+            if ($internalPartner->getStartup() === $this) {
+                $internalPartner->setStartup(null);
+            }
+        }
+
+        return $this;
+    }
+//      * @return Collection|Satisfaction[]
+//      */
+//     public function getSatisfactions(): Collection
+//     {
+//         return $this->satisfactions;
+//     }
+
+//     public function addSatisfaction(Satisfaction $satisfaction): self
+//     {
+//         if (!$this->satisfactions->contains($satisfaction)) {
+//             $this->satisfactions[] = $satisfaction;
+//             $satisfaction->setSociety($this);
+//         }
+
+//         return $this;
+//     }
+
+//     public function removeSatisfaction(Satisfaction $satisfaction): self
+//     {
+//         if ($this->satisfactions->contains($satisfaction)) {
+//             $this->satisfactions->removeElement($satisfaction);
+//             // set the owning side to null (unless already changed)
+//             if ($satisfaction->getSociety() === $this) {
+//                 $satisfaction->setSociety(null);
+//             }
+//         }
+
+//         return $this;
+//     }
 }

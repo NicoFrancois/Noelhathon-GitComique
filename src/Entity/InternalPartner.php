@@ -41,6 +41,16 @@ class InternalPartner
      */
     private $editionEvent;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\StartUp", inversedBy="internalPartners")
+     */
+    private $startup;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="internalPartners")
+     */
+    private $event;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,7 +112,28 @@ class InternalPartner
     public function setEditionEvent(?EditionEvent $editionEvent): self
     {
         $this->editionEvent = $editionEvent;
+    }
 
+        public function getStartup(): ?StartUp
+    {
+        return $this->startup;
+    }
+
+    public function setStartup(?StartUp $startup): self
+    {
+        $this->startup = $startup;
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): self
+    {
+        $this->event = $event;
         return $this;
     }
 }
