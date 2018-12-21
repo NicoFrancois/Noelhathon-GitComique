@@ -33,6 +33,11 @@ class Service
      */
     private $editionServices;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
     public function __construct()
     {
         $this->editionServices = new ArrayCollection();
@@ -95,6 +100,18 @@ class Service
                 $editionService->setService(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
