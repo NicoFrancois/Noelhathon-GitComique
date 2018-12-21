@@ -94,6 +94,11 @@ class StartUp
      */
     private $event;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\InternalPartner", inversedBy="startUps")
+     */
+    private $internatinalParner;
+
 //      * @ORM\ManyToMany(targetEntity="App\Entity\EditionEvent", mappedBy="startup")
 //      */
 //     private $editionEvents;
@@ -107,6 +112,7 @@ class StartUp
         $this->internalPartners = new ArrayCollection();
 
         $this->event = new ArrayCollection();
+        $this->internatinalParner = new ArrayCollection();
 
 //         $this->editionEvents = new ArrayCollection();
 
@@ -359,37 +365,11 @@ class StartUp
     {
         if (!$this->event->contains($event)) {
             $this->event[] = $event;
-// =======
-//      * @return Collection|EditionEvent[]
-//      */
-//     public function getEditionEvents(): Collection
-//     {
-//         return $this->editionEvents;
-//     }
-
-//     public function addEditionEvent(EditionEvent $editionEvent): self
-//     {
-//         if (!$this->editionEvents->contains($editionEvent)) {
-//             $this->editionEvents[] = $editionEvent;
-//             $editionEvent->addStartup($this);
-// >>>>>>> dev
-        }
-
-        return $this;
     }
-
-// <<<<<<< eventStartUp
     public function removeEvent(Event $event): self
     {
         if ($this->event->contains($event)) {
             $this->event->removeElement($event);
-// =======
-//     public function removeEditionEvent(EditionEvent $editionEvent): self
-//     {
-//         if ($this->editionEvents->contains($editionEvent)) {
-//             $this->editionEvents->removeElement($editionEvent);
-//             $editionEvent->removeStartup($this);
-// >>>>>>> dev
         }
 
         return $this;
@@ -409,6 +389,21 @@ public function removeService(Service $service): self
     if ($this->service->contains($service)) {
         $this->service->removeElement($service);
     }
+}
+      
+      /**
+ * @return Collection|InternalPartner[]
+ */
+public function getInternatinalParner(): Collection
+{
+    return $this->internatinalParner;
+}
+
+public function addInternatinalParner(InternalPartner $internatinalParner): self
+{
+    if (!$this->internatinalParner->contains($internatinalParner)) {
+        $this->internatinalParner[] = $internatinalParner;
+    }
 
     return $this;
 }
@@ -427,36 +422,13 @@ public function addSatisfaction(Satisfaction $satisfaction): self
         $this->satisfactions[] = $satisfaction;
         $satisfaction->setSociety($this);
     }
-
+}
+      
+public function removeInternatinalParner(InternalPartner $internatinalParner): self
+{
+    if ($this->internatinalParner->contains($internatinalParner)) {
+        $this->internatinalParner->removeElement($internatinalParner);
+    }
     return $this;
 }
-//      * @return Collection|Satisfaction[]
-//      */
-//     public function getSatisfactions(): Collection
-//     {
-//         return $this->satisfactions;
-//     }
-
-//     public function addSatisfaction(Satisfaction $satisfaction): self
-//     {
-//         if (!$this->satisfactions->contains($satisfaction)) {
-//             $this->satisfactions[] = $satisfaction;
-//             $satisfaction->setSociety($this);
-//         }
-
-//         return $this;
-//     }
-
-//     public function removeSatisfaction(Satisfaction $satisfaction): self
-//     {
-//         if ($this->satisfactions->contains($satisfaction)) {
-//             $this->satisfactions->removeElement($satisfaction);
-//             // set the owning side to null (unless already changed)
-//             if ($satisfaction->getSociety() === $this) {
-//                 $satisfaction->setSociety(null);
-//             }
-//         }
-
-//         return $this;
-//     }
 }
